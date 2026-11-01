@@ -14,9 +14,10 @@ interface Props {
 const { title = defaultTitle, description = defaultDescription } = Astro.props
 
 // Preload do LCP: mesmas larguras/formatos que o <Picture> do Hero.
-const heroPreload640 = await getImage({ src: hero.banner.src, width: 640, format: 'webp' })
-const heroPreload1024 = await getImage({ src: hero.banner.src, width: 1024, format: 'webp' })
-const heroPreload1981 = await getImage({ src: hero.banner.src, width: 1981, format: 'webp' })
+// Preload do LCP: mesmas larguras/formatos que o <Picture> do Hero (hero.banner.widths).
+const heroPreload = await Promise.all(
+  hero.banner.widths.map((width) => getImage({ src: hero.banner.src, width, format: 'webp' })),
+)
 const ogLogo = await getImage({ src: logoImg, width: 512, format: 'webp' })
 
 const ogImage = new URL(ogLogo.src, site.url).href
@@ -60,9 +61,9 @@ const jsonLd = {
     <link
       rel="preload"
       as="image"
-      href={heroPreload1981.src}
-      imagesrcset={`${heroPreload640.src} 640w, ${heroPreload1024.src} 1024w, ${heroPreload1981.src} 1981w`}
-      imagesizes="(min-width: 1280px) 1150px, (min-width: 1024px) 85vw, 165vw"
+      href={heroPreload.at(-1)?.src}
+      imagesrcset={heroPreload.map((img, i) => `${img.src} ${hero.banner.widths[i]}w`).join(', ')}
+      imagesizes={hero.banner.sizes}
       fetchpriority="high"
     />
     {/* Manrope servida pelo próprio site (global.css), pré-carregada para chegar antes da

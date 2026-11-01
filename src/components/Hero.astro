@@ -1,171 +1,170 @@
 ---
 /**
- * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.2), com o desvio visual aprovado para a Safe Mine
- * (mockup claro de abertura, 29/10/2026 — docs/BRIEFING.md).
- *
- * Fundo claro. Grid desktop: texto · cena (foto em card arredondado, com o reservatório SEIVE
- * sobreposto ao canto e a legenda abaixo). A faixa de três pontos fecha o hero.
- *
- * O banner tem o lado esquerdo em azul sólido; dentro do card ele entra ampliado (118% da
- * altura) e ancorado à direita, para mostrar só a cena da mina.
- *
- * Slot do chat: fora do WordPress ele só contém o texto cru do shortcode, e o CSS o esconde
- * (`:not(:has(*))`) — a cena aparece no lugar. Quando o plugin renderiza o chat, o chat
- * ocupa a coluna e a cena sai.
- *
+ * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.2). Grid desktop: texto · janela do banner · shortcode.
+ * A coluna 2 é a janela do banner; nunca coloque conteúdo nela.
  * Abra a página com `?grid=1` para ver as colunas.
+ *
+ * Banner (src/assets/heroBg.png, 1981×900): escavadeira em operação numa mina, banner entregue em 29/10/2026
+ * (1870×841), enquadrado para o grid (assunto em ~70% da largura, lado esquerdo azul). Brief em 4.1.3.
  */
-import { Image, Picture } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import Icon from './Icon.astro'
 import Button from './Button.astro'
+import Eyebrow from './Eyebrow.astro'
 import { hero, cta } from '../data/content'
+
+const isDev = import.meta.env.DEV
 
 // O H1 continua sendo `hero.title` (é ele que o check:lp confere); o destaque só muda a cor.
 const at = hero.title.indexOf(hero.highlight)
 const titleBefore = at >= 0 ? hero.title.slice(0, at) : hero.title
 const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
-
-/** Mesmo valor do preload em Layout.astro: a foto é renderizada ~2,6× a altura do card. */
-const HERO_SCENE_SIZES = '(min-width: 1280px) 1150px, (min-width: 1024px) 85vw, 165vw'
 ---
 
-<section class="hero relative isolate overflow-hidden bg-neutral-gray-100" data-hero>
+<section
+  class="relative overflow-hidden rounded-b-[2rem] bg-primary-dark-900 sm:rounded-b-[3rem]"
+  data-hero
+>
+  <div class="hero-photo absolute inset-0 z-[1]">
+    <Picture
+      src={hero.banner.src}
+      alt={hero.banner.alt}
+      widths={[...hero.banner.widths]}
+      sizes={hero.banner.sizes}
+      formats={['avif', 'webp']}
+      fallbackFormat="webp"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover"
+      pictureAttributes={{ class: 'block h-full w-full' }}
+    />
+  </div>
+
+  <div class="hero-navy pointer-events-none absolute inset-y-0 left-0 z-[2] w-full"></div>
+
+  <div class="hero-navy-right pointer-events-none absolute inset-y-0 right-0 z-[2] hidden lg:block"></div>
+
   <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(900px_520px_at_18%_20%,rgb(255_255_255/0.9)_0%,transparent_70%)]"
+    class="hero-dots pointer-events-none absolute inset-y-0 left-0 z-[3] w-full opacity-[0.35] lg:[mask-image:linear-gradient(to_right,black_70%,transparent_100%)]"
+    style="background-image: radial-gradient(circle, rgb(255 255 255 / 0.5) 1px, transparent 1px); background-size: 28px 28px;"
   ></div>
 
-  <div class="relative z-[1] mx-auto max-w-page px-6 pt-28 pb-14 sm:pt-32 lg:px-10 lg:pt-32 lg:pb-16">
-    <div class="hero-grid grid items-center gap-12 lg:gap-x-8">
-      {/* Coluna 1 — textos */}
-      <div>
-        <p class="flex items-center gap-4 font-sans text-[12px] font-bold tracking-[0.24em] text-ink uppercase sm:text-[13px]">
-          <span aria-hidden="true" class="h-1 w-12 shrink-0 rounded-full bg-accent-orange"></span>
-          {hero.eyebrow}
-        </p>
+  <svg
+    class="pointer-events-none absolute top-6 left-6 z-[4] size-4 text-white/50"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="9"></circle>
+    <path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path>
+  </svg>
 
-        <h1 class="mt-5 font-display text-[2.6rem] leading-[1.03] font-extrabold tracking-[-0.035em] text-primary-dark-900 sm:text-[3.4rem] lg:text-[3.2rem] xl:text-[3.9rem]">
+  <div class="relative z-[5] mx-auto max-w-page px-6 pt-28 pb-20 sm:pt-32 lg:px-10 lg:pt-40 lg:pb-24">
+    <div class="hero-grid grid items-center gap-y-12 lg:gap-x-6">
+      {/* Coluna 1 — textos */}
+      <div class="max-w-xl lg:max-w-none">
+        <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
+
+        <h1 class="mt-2 font-display text-[2.75rem] leading-[1.1] font-extrabold text-neutral-light sm:text-[3rem] lg:text-[2.75rem] xl:text-[3.1rem]">
           {titleBefore}
-          <span class="text-accent-orange">{at >= 0 ? hero.highlight : ''}</span>
+          <span class="text-accent-orange-light">{at >= 0 ? hero.highlight : ''}</span>
           {titleAfter}
         </h1>
 
-        <p class="mt-6 max-w-[34rem] font-sans text-[17px] leading-relaxed text-ink-soft sm:text-[19px]">
+        <p class="mt-5 font-sans text-lg leading-relaxed text-neutral-light/75 lg:text-base">
           {hero.text}
         </p>
 
-        <div class="mt-9 flex flex-wrap items-center gap-x-9 gap-y-5">
-          <Button
-            cta="hero-primary"
-            variant="primary"
-            class="rounded-lg px-9! py-[18px]! text-[18px]! shadow-[0_16px_32px_-16px_rgba(77,127,34,0.75)]"
-          >
+        {/* Caixa de ícones — inline, texto sempre em duas linhas */}
+        <ul class="hero-points relative z-[3] mt-7 inline-flex max-w-full flex-wrap gap-x-5 gap-y-3 rounded-xl border border-white/10 bg-primary-dark-900/55 px-3.5 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] backdrop-blur-md sm:gap-x-6 sm:px-4 lg:w-max lg:max-w-none lg:flex-nowrap lg:gap-x-6">
+          {hero.points.map((point) => (
+            <li class="hero-point flex items-center gap-2.5">
+              <span class="icon-badge flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/25 bg-white/10 backdrop-blur-sm">
+                <Icon name={point.icon} class="size-[18px] text-neutral-light" />
+              </span>
+              <span class="font-sans text-[13.5px] leading-snug font-semibold text-neutral-light [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]">
+                <span class="block whitespace-nowrap">{point.line1}</span>
+                <span class="block whitespace-nowrap">{point.line2}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Botões inline */}
+        <div class="mt-7 flex flex-wrap items-center gap-4">
+          <Button cta="hero-primary" variant="primary">
             {cta.primary}
           </Button>
-
-          {/* Secundário do mockup: link que rola até o kit — não abre atendimento */}
-          <a
-            href={hero.secondary.href}
-            data-cta="hero-secondary"
-            class="group inline-flex items-center gap-3 border-b-2 border-ink/60 pb-1.5 font-sans text-[17px] font-semibold text-primary-dark-900 transition-colors duration-200 hover:border-accent-orange motion-reduce:transition-none"
+          <Button
+            cta="hero-secondary"
+            variant="outline-light"
+            iconName="search"
+            iconPosition="left"
           >
-            {hero.secondary.label}
-            <Icon
-              name="arrow-right"
-              class="size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-            />
-          </a>
+            {cta.secondary}
+          </Button>
         </div>
 
-        <p class="mt-8 flex items-center gap-3 font-sans text-[15px] text-ink-soft sm:text-base">
-          <Icon name={hero.trust.icon} class="size-9 shrink-0 text-accent-orange" />
-          {hero.trust.label}
-        </p>
+        <p class="mt-5 max-w-[34rem] font-sans text-[12.5px] text-neutral-light/55">{hero.note}</p>
       </div>
 
-      {/* Coluna 2 — chat do plugin ou, sem ele, a cena */}
-      <div class="hero-aside relative">
-        <div class="hero-chat min-h-[430px] w-full" data-shortcode-slot>
-          <slot name="shortcode" />
-        </div>
+      {/* Coluna 2 — VAZIA de propósito: janela do banner */}
+      <div class="hidden lg:block" aria-hidden="true"></div>
 
-        <div class="hero-visual">
-          <div class="relative aspect-[1.58/1]">
-            {/* Foto da mina em card arredondado */}
-            <div class="hero-scene absolute inset-0 overflow-hidden rounded-[1.75rem] bg-primary-dark-900 shadow-[0_34px_70px_-40px_rgba(10,29,77,0.65)] lg:rounded-[2.5rem]">
-              <Picture
-                src={hero.banner.src}
-                alt={hero.banner.alt}
-                widths={[640, 1024, 1536, 1981]}
-                sizes={HERO_SCENE_SIZES}
-                formats={['avif', 'webp']}
-                fallbackFormat="webp"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                class="hero-scene-img"
-              />
+      {/* Coluna 3 — espaço reservado ao shortcode do chat (300px) */}
+      <div class="hero-chat w-full lg:w-[300px]">
+        <slot name="shortcode">
+          {isDev ? (
+            <div
+              class="flex min-h-[430px] w-full flex-col gap-3 border border-dashed border-neutral-light/35 bg-primary-dark-900/80 p-6 text-left backdrop-blur-sm"
+              aria-label="Mock do chat (só em desenvolvimento)"
+            >
+              <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
+                Mock · chat
+              </span>
+              <div class="h-11 rounded-lg bg-neutral-light/10" />
+              <div class="h-11 rounded-lg bg-neutral-light/10" />
+              <div class="h-11 rounded-lg bg-neutral-light/10" />
+              <div class="mt-auto h-12 rounded-full bg-accent-orange" />
             </div>
-
-            {/* Reservatório SEIVE sobreposto ao canto inferior esquerdo */}
-            <Image
-              src={hero.product.photo.src}
-              alt={hero.product.photo.alt}
-              width={420}
-              format="webp"
-              loading="eager"
-              decoding="async"
-              class="hero-product absolute -bottom-[22%] -left-[5%] z-[2] h-[86%] w-auto drop-shadow-[0_28px_28px_rgba(10,29,77,0.35)]"
-            />
-          </div>
-
-          {/* Legenda ao lado do produto */}
-          <div class="mt-6 pl-[40%] sm:pl-[36%] lg:mt-8 lg:pl-[33%]">
-            <span aria-hidden="true" class="block h-1 w-10 rounded-full bg-accent-orange"></span>
-            <p class="mt-3 font-display text-[15px] font-extrabold tracking-[0.14em] text-primary-dark-900 uppercase sm:text-[17px]">
-              {hero.product.eyebrow}
-            </p>
-            <p class="mt-1 font-sans text-[14px] text-ink-soft sm:text-[15px]">
-              {hero.product.text}
-            </p>
-          </div>
-        </div>
+          ) : (
+            <div class="flex min-h-[430px] w-full flex-col items-center justify-center gap-3 border border-dashed border-neutral-light/35 bg-primary-dark-900/80 p-6 text-center backdrop-blur-sm">
+              <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
+                Espaço reservado
+              </span>
+              <p class="font-display text-lg font-bold text-neutral-light">Shortcode — 300px</p>
+              <p class="font-sans text-sm leading-relaxed text-neutral-light/60">
+                Insira o conteúdo no slot{' '}
+                <code class="font-mono text-neutral-light/85">shortcode</code>
+                do componente Hero.
+              </p>
+            </div>
+          )}
+        </slot>
       </div>
     </div>
-  </div>
-
-  {/* Faixa de três pontos — largura total, fecha o hero */}
-  <div class="hero-strip relative z-[1] border-t border-primary-dark/10 bg-primary-dark/[0.035]">
-    <ul
-      class="mx-auto grid max-w-page px-6 sm:grid-cols-3 lg:px-10"
-      aria-label="Destaques do sistema"
-    >
-      {hero.points.map((point) => (
-        <li class="hero-point flex items-center gap-4 py-5 sm:px-4 sm:py-7 sm:first:pl-0 lg:gap-5 lg:px-6 lg:py-8">
-          <Icon name={point.icon} class="size-11 shrink-0 text-accent-orange lg:size-12" />
-          <span class="font-sans leading-snug">
-            <span class="block font-display text-[15px] font-bold text-primary-dark-900 lg:text-base xl:whitespace-nowrap">
-              {point.line1}
-            </span>
-            <span class="mt-0.5 block text-[14px] text-ink-soft lg:text-[15px]">{point.line2}</span>
-          </span>
-        </li>
-      ))}
-    </ul>
   </div>
 
   {/* Overlay de depuração: ?grid=1 */}
   <div data-hero-grid hidden class="pointer-events-none absolute inset-0 z-[9]">
     <div class="mx-auto h-full max-w-page px-6 lg:px-10">
-      <div class="hero-grid grid h-full lg:gap-x-8">
-        <div class="border-x border-dashed border-ink/50">
+      <div class="hero-grid grid h-full lg:gap-x-6">
+        <div class="border-x border-dashed border-white/60">
           <span class="m-2 inline-block bg-black/60 px-2 font-mono text-[11px] text-white">
             col 1 · texto
           </span>
         </div>
         <div class="hidden border-x border-dashed border-accent-orange lg:block">
+          <span class="m-2 inline-block bg-black/60 px-2 font-mono text-[11px] text-accent-orange">
+            col 2 · janela do banner · vazia
+          </span>
+        </div>
+        <div class="hidden border-x border-dashed border-white/60 lg:block">
           <span class="m-2 inline-block bg-black/60 px-2 font-mono text-[11px] text-white">
-            col 2 · cena (chat ou foto + produto)
+            col 3 · 300px · shortcode
           </span>
         </div>
       </div>
@@ -174,55 +173,81 @@ const HERO_SCENE_SIZES = '(min-width: 1280px) 1150px, (min-width: 1024px) 85vw, 
 </section>
 
 <style>
-  /* Foto ampliada e ancorada à direita: o azul do lado esquerdo do banner fica fora do card. */
-  .hero-scene-img {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: auto;
-    max-width: none;
-    height: 118%;
-    transform: translateY(-50%);
-  }
-
-  /* Slot do chat: só aparece quando o plugin renderiza algo (elemento, não texto cru). */
-  .hero-chat:not(:has(*)) {
-    display: none;
-  }
-
-  .hero-aside:has(.hero-chat *) .hero-visual {
-    display: none;
-  }
-
-  /* Divisórias da faixa: horizontais no mobile, verticais a partir de tablet. */
-  .hero-point + .hero-point {
-    border-top: 1px solid rgb(16 44 115 / 0.1);
-  }
-
+  /* Divisórias sutis entre os destaques do hero (a partir de tablet) */
   @media (width >= 40rem) {
     .hero-point + .hero-point {
-      border-top: 0;
-      border-left: 1px solid rgb(16 44 115 / 0.14);
+      padding-left: 1.25rem;
+      border-left: 1px solid rgb(255 255 255 / 0.18);
     }
   }
 
   @media (width >= 64rem) {
-    /* Col 1 texto · col 2 cena */
-    .hero-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    .hero-point + .hero-point {
+      padding-left: 1.5rem;
     }
   }
 
-  @media (width >= 80rem) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 37rem) minmax(0, 1fr);
-    }
+  /* Metade da largura da página (container-page / 2): ancora as colunas e a foto no mesmo eixo. */
+  .hero-photo,
+  .hero-navy,
+  .hero-navy-right,
+  .hero-dots,
+  .hero-grid {
+    --page-half: calc(var(--container-page) / 2);
+    --page-edge: max(0px, calc(50% - var(--page-half)));
   }
 
-  /* A cena sangra para a direita quando sobra margem fora do container. */
-  @media (width >= 87.5rem) {
-    .hero-visual {
-      margin-right: -4rem;
+  .hero-navy {
+    background:
+      radial-gradient(1100px 520px at 12% -8%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
+      linear-gradient(
+        to right,
+        var(--color-primary-dark) 0%,
+        var(--color-primary-dark-800) 55%,
+        transparent 96%
+      );
+  }
+
+  @media (min-width: 1024px) {
+    /* Col 1 (1fr) | Col 2 janela do banner | Col 3 shortcode 300px */
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) 270px 300px;
+    }
+
+    /* Foto na borda direita da página, com 1700px: o assunto cai no centro da coluna 2. */
+    .hero-photo {
+      left: auto;
+      right: var(--page-edge);
+      width: 1700px;
+    }
+
+    /* Navy sólido sob a coluna 1, dissolvendo antes do assunto. */
+    .hero-navy {
+      width: calc(50% - 20px);
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
+        linear-gradient(
+          to left,
+          transparent 0px,
+          rgb(10 29 77 / 0.45) 70px,
+          var(--color-primary-dark-800) 150px,
+          var(--color-primary-dark) 100%
+        );
+    }
+
+    /* Navy da direita: cobre a coluna do shortcode e fecha a margem da página. */
+    .hero-navy-right {
+      width: calc(50% - 261px);
+      background: linear-gradient(
+        to right,
+        transparent 0px,
+        rgb(10 29 77 / 0.55) 200px,
+        var(--color-primary-dark-900) 364px
+      );
+    }
+
+    .hero-dots {
+      width: calc(50% - 60px);
     }
   }
 </style>

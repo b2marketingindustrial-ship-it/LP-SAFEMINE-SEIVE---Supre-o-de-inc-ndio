@@ -105,12 +105,12 @@ Diferenças em relação aos veredictos do briefing organizado: `linhas` (compon
 
 ## Assets
 
-| Asset           | Arquivo esperado              | Especificação               | Status                                                                                        |
-| --------------- | ----------------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
-| Logo            | `src/assets/LOGO.png`         | 240×200, fundo transparente | entregue — logo do site da Safe Mine (og:image e JSON-LD)                                     |
-| Logo do header  | `src/assets/header-logo.png`  | 579×124                     | entregue — mesmo logo, recortado para a barra branca do mockup                                |
-| Banner do hero  | `src/assets/heroBg.png`       | 1981×900, brief 4.1.3       | entregue — "Orange Excavator in Rocky Quarry.png" (1870×841), enviado em 29/10/2026           |
-| Produto do hero | `src/assets/hero-produto.png` | PNG recortado               | entregue — "Red SEIVE Fire Suppression Reservoir Assembly.png", também usado em `linha-1.png` |
+| Asset           | Arquivo esperado             | Especificação               | Status                                                                              |
+| --------------- | ---------------------------- | --------------------------- | ----------------------------------------------------------------------------------- |
+| Logo            | `src/assets/LOGO.png`        | 240×200, fundo transparente | entregue — logo do site da Safe Mine (og:image e JSON-LD)                           |
+| Logo do header  | `src/assets/header-logo.png` | 579×124                     | entregue — mesmo logo, recortado para a barra branca do mockup                      |
+| Banner do hero  | `src/assets/heroBg.png`      | 1981×900, brief 4.1.3       | entregue — "Orange Excavator in Rocky Quarry.png" (1870×841), enviado em 29/10/2026 |
+| Produto do hero | —                            | removido em 01/11/2026      | o reservatório sobreposto saiu com o hero claro; `linha-1.png` segue usando a foto  |
 
 | Asset                        | Arquivo esperado                             | Especificação                 | Status                                                                                                              |
 | ---------------------------- | -------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -152,6 +152,10 @@ A pedido do usuário, Header e Hero seguem o mockup claro enviado em 29/10/2026 
 - Vocabulário de CTA: o primário passou a "Solicitar cotação", como no mockup, em toda a página.
 - Ícone novo no catálogo: `excavator`. O preload do LCP em `Layout.astro` usa o mesmo `sizes` da foto do hero.
 - A assinatura A8 de `scripts/check-lp.mjs` foi repinada para essa abertura.
+
+## Hero restaurado ao padrão (01/11/2026)
+
+A pedido do usuário, o Hero deixou o mockup claro e voltou à estrutura fixa 4.1.2, como nas demais LPs da B2: grid `1fr · 270px · 300px`, coluna 2 vazia (janela do banner), slot `shortcode` de 300px e foto de 1700px na borda do container, com véus, malha de pontos, borda inferior arredondada e `?grid=1`. O banner foi reenquadrado para 1981×900 (assunto em ~70% da largura). Saíram o link "Conhecer o sistema", o reservatório sobreposto e a legenda; entraram a caixa de três pontos, o CTA secundário "Identifique seu equipamento" e a nota "Conte qual equipamento você precisa proteger." sob os botões. O Header segue o mockup claro de 29/10/2026, agora com o logo SEIVE antes do Safe Mine. A assinatura A8 do Hero voltou à da estrutura fixa.
 
 ## Desvio aprovado: seção do kit no mockup da Safe Mine (29/10/2026)
 

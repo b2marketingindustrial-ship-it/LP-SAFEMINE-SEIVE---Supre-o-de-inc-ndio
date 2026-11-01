@@ -12,7 +12,6 @@ import type { IconName } from './icons'
 import type { Photo } from './types'
 
 import heroBg from '@assets/heroBg.png'
-import heroProduto from '@assets/hero-produto.png'
 
 /* ------------------------------------------------------------------ tipos */
 
@@ -62,45 +61,26 @@ export const hero = {
   banner: {
     src: heroBg,
     alt: 'Escavadeira com reservatório supressor SEIVE instalado, em operação numa mina',
+    /** Larguras geradas: as mesmas no <Picture> do Hero e no preload do Layout. */
+    widths: [640, 1024, 1536, 1981],
+    sizes: '(min-width: 1024px) 1700px, 100vw',
   },
-  /** Link secundário do mockup: rola até a seção do kit, não abre atendimento. */
-  secondary: { label: 'Conhecer o sistema', href: '#linhas' },
-  /** Selo sob os botões. */
-  trust: { icon: 'shield', label: 'Conte qual equipamento você precisa proteger.' },
-  /** Produto sobre a foto e legenda (fora do WordPress, ou enquanto o chat não carrega). */
-  product: {
-    eyebrow: 'Sistema SEIVE',
-    text: 'Proteção embarcada para máquinas pesadas.',
-    photo: { src: heroProduto, alt: 'Reservatório supressor SEIVE com cilindro de nitrogênio' },
-  },
-  /** Faixa de três pontos na base do hero: `line1` é o título, `line2` o apoio. */
+  /** Caixa de três pontos: `line1` e `line2` ficam sempre em duas linhas. */
   points: [
-    {
-      icon: 'gear',
-      line1: 'Detecção e atuação automática',
-      line2: 'Resposta integrada ao sistema.',
-    },
-    {
-      icon: 'excavator',
-      line1: 'Proteção para equipamentos móveis',
-      line2: 'Solução para máquinas pesadas.',
-    },
-    {
-      icon: 'mountain',
-      line1: 'Aplicação em mineração e indústria',
-      line2: 'Seleção conforme a operação.',
-    },
+    { icon: 'gear', line1: 'Detecção e atuação', line2: 'automática' },
+    { icon: 'excavator', line1: 'Equipamentos móveis', line2: 'e máquinas pesadas' },
+    { icon: 'mountain', line1: 'Mineração', line2: 'e indústria' },
   ],
+  /** Aviso sob os botões. */
+  note: 'Conte qual equipamento você precisa proteger.',
 } as const satisfies {
   eyebrow: string
   title: string
   highlight: string
   text: string
-  banner: Photo
-  secondary: { label: string; href: string }
-  trust: TrustItem
-  product: { eyebrow: string; text: string; photo: Photo }
+  banner: Photo & { widths: readonly number[]; sizes: string }
   points: readonly [HeroPoint, HeroPoint, HeroPoint]
+  note: string
 }
 
 /* ----------------------------------------------------------------- cotação */
