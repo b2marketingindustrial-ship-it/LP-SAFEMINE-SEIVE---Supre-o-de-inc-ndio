@@ -189,12 +189,11 @@ for (const f of astroFiles) {
 
 /* A8. Estrutura fixa: assinaturas do Header, Hero, Cotação e Footer ---------- */
 {
-  // Header repinado para a barra branca flutuante da Safe Mine (mockup aprovado em 29/10/2026,
-  // registrado em docs/BRIEFING.md). O Hero voltou à estrutura fixa 4.1.2 em 01/11/2026.
+  // Header e Hero seguem a estrutura fixa 4.1.1 e 4.1.2 (restaurados em 01/11/2026).
   // Cotação e Footer repinados para o mockup da cotação (30/10/2026): formulário em card
   // (grid 0.85fr · 1fr) e rodapé navy sólido com filete verde.
   const expect = {
-    'Header.astro': ['fixed inset-x-0 top-0 z-50', 'header-nav', 'data-cta="header-cta"'],
+    'Header.astro': ['sticky top-0 z-50', 'bg-primary-dark-900', 'data-cta="header-cta"'],
     'Hero.astro': [
       'grid-template-columns: minmax(0, 1fr) 270px 300px',
       'right: var(--page-edge)',

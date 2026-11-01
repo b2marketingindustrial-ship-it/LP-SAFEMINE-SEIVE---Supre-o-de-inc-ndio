@@ -43,11 +43,8 @@ export const cta = {
 /* ------------------------------------------------------------------ header */
 
 export const header = {
-  /** Âncoras do mockup claro (desvio aprovado): duas, sem menu. */
-  links: [
-    { label: 'Sistema SEIVE', href: '#linhas' },
-    { label: 'Aplicações', href: '#aplicacoes' },
-  ],
+  /** Tagline central da barra (estrutura fixa 4.1.1): o produto principal. */
+  tagline: 'Supressão de incêndio',
 } as const
 
 /* -------------------------------------------------------------------- hero */

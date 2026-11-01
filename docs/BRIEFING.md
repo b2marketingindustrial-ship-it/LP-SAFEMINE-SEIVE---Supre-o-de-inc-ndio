@@ -155,7 +155,7 @@ A pedido do usuário, Header e Hero seguem o mockup claro enviado em 29/10/2026 
 
 ## Hero restaurado ao padrão (01/11/2026)
 
-A pedido do usuário, o Hero deixou o mockup claro e voltou à estrutura fixa 4.1.2, como nas demais LPs da B2: grid `1fr · 270px · 300px`, coluna 2 vazia (janela do banner), slot `shortcode` de 300px e foto de 1700px na borda do container, com véus, malha de pontos, borda inferior arredondada e `?grid=1`. O banner foi reenquadrado para 1981×900 (assunto em ~70% da largura). Saíram o link "Conhecer o sistema", o reservatório sobreposto e a legenda; entraram a caixa de três pontos, o CTA secundário "Identifique seu equipamento" e a nota "Conte qual equipamento você precisa proteger." sob os botões. O Header segue o mockup claro de 29/10/2026, agora com o logo SEIVE antes do Safe Mine. A assinatura A8 do Hero voltou à da estrutura fixa.
+A pedido do usuário, o Hero deixou o mockup claro e voltou à estrutura fixa 4.1.2, como nas demais LPs da B2: grid `1fr · 270px · 300px`, coluna 2 vazia (janela do banner), slot `shortcode` de 300px e foto de 1700px na borda do container, com véus, malha de pontos, borda inferior arredondada e `?grid=1`. O banner foi reenquadrado para 1981×900 (assunto em ~70% da largura). Saíram o link "Conhecer o sistema", o reservatório sobreposto e a legenda; entraram a caixa de três pontos, o CTA secundário "Identifique seu equipamento" e a nota "Conte qual equipamento você precisa proteger." sob os botões. O Header também voltou ao padrão (ver abaixo). A assinatura A8 do Hero voltou à da estrutura fixa.
 
 ## Desvio aprovado: seção do kit no mockup da Safe Mine (29/10/2026)
 
@@ -222,3 +222,7 @@ A pedido do usuário, `QuoteForm.astro` e `Footer.astro` (estrutura fixa) seguem
 - [x] Todos os assets reais entregues (30/10/2026; `assets.pendentes` vazio)
 - [x] `npm run verify` passa inteiro em: 30/10/2026 — 0 erros, 1 aviso (foto florestal com 899 px de largura)
 - [x] Padrão B2 versão: `2.8.0`
+
+## Header restaurado ao padrão (01/11/2026)
+
+A pedido do usuário, o Header deixou a barra branca flutuante do mockup de 29/10/2026 e voltou à estrutura fixa 4.1.1, como nas demais LPs da B2: barra navy `sticky`, a placa branca traz o logo SEIVE, um separador e o Safe Mine, tagline central "Supressão de incêndio" e CTA laranja em caixa-alta ("Cotação" no celular). As âncoras do topo saíram. O Hero voltou ao padding do padrão (`py-20 lg:py-24`), já que o header não é mais sobreposto. A assinatura A8 do Header em `scripts/check-lp.mjs` voltou à da estrutura fixa.
