@@ -11,6 +11,7 @@
  * Atenção: `npm run compose` sobrescreve este arquivo com o da biblioteca. Para recompor a
  * LP sem perder o mockup, restaure-o do git depois do compose.
  */
+import Button from '@components/Button.astro'
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
@@ -137,14 +138,9 @@ const band = productLines.items.find((line) => line.dark)
       </div>
 
       <div class="lg:border-l lg:border-white/15 lg:pl-10">
-        <button
-          type="button"
-          data-cta={`linhas-${band.id}`}
-          class="btn-slave-whats inline-flex w-full items-center justify-center gap-3 rounded-full bg-accent-orange px-7 py-4 font-sans text-[16px] font-semibold text-neutral-light shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] transition-colors duration-200 hover:bg-accent-orange-dark sm:w-auto sm:text-[17px]"
-        >
+        <Button cta={`linhas-${band.id}`} size="md" class="w-full sm:w-auto">
           {cta.card}
-          <Icon name="arrow-right" class="size-5 shrink-0" />
-        </button>
+        </Button>
       </div>
     </div>
   )}

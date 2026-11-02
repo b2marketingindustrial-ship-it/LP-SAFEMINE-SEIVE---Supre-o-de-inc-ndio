@@ -10,6 +10,7 @@
  * (`:not(:has(*))`) e o card fica vazio, como no mockup. No WordPress o plugin renderiza o
  * formulário dentro do card.
  */
+import Button from './Button.astro'
 import Icon from './Icon.astro'
 import { quote, cta } from '../data/content'
 import { site } from '../data/site'
@@ -82,14 +83,15 @@ const tituloB = at > 0 ? quote.highlight : ''
           {quote.text}
         </p>
 
-        <button
-          type="button"
-          data-cta="cotacao-whatsapp"
-          class="btn-slave-whats mt-8 inline-flex w-full items-center justify-center gap-3.5 rounded-xl bg-accent-orange px-9 py-5 font-sans text-[18px] font-semibold text-neutral-light shadow-[0_18px_34px_-16px_rgba(77,127,34,0.75)] transition-colors duration-200 hover:bg-accent-orange-dark sm:w-auto sm:text-[20px]"
+        <Button
+          cta="cotacao-whatsapp"
+          size="lg"
+          iconName="whatsapp"
+          iconPosition="left"
+          class="mt-8 w-full sm:w-auto"
         >
-          <Icon name="whatsapp" class="size-8 shrink-0" />
           {cta.whatsapp}
-        </button>
+        </Button>
 
         <ul class="mt-9 grid gap-5 border-t border-ink/10 pt-8 sm:grid-cols-3 sm:gap-0">
           {quote.trust.map((item) => (

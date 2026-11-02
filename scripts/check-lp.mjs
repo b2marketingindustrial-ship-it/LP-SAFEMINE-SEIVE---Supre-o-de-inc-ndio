@@ -193,7 +193,7 @@ for (const f of astroFiles) {
   // Cotação e Footer repinados para o mockup da cotação (30/10/2026): formulário em card
   // (grid 0.85fr · 1fr) e rodapé navy sólido com filete verde.
   const expect = {
-    'Header.astro': ['sticky top-0 z-50', 'bg-primary-dark-900', 'data-cta="header-cta"'],
+    'Header.astro': ['sticky top-0 z-50', 'bg-primary-dark-900', 'cta="header-cta"'],
     'Hero.astro': [
       'grid-template-columns: minmax(0, 1fr) 270px 300px',
       'right: var(--page-edge)',
@@ -208,7 +208,7 @@ for (const f of astroFiles) {
       'lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]',
       'order-2 w-full lg:order-1',
       'data-shortcode-slot',
-      'data-cta="cotacao-whatsapp"',
+      'cta="cotacao-whatsapp"',
     ],
     'Footer.astro': [
       'border-t-2 border-accent-orange bg-primary-dark-900',
