@@ -129,17 +129,18 @@ Direito de uso das fotos de máquinas da apresentação da SEIVE a confirmar.
 | O que o material pedia                                 | Regra do padrão                                          | O que entrou no lugar                                                              |
 | ------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | SEIVE como marca no núcleo do briefing                 | a LP é do anunciante                                     | Safe Mine na marca, rodapé e WhatsApp; SEIVE como fabricante                       |
-| Certificação ABNT, NFPA, UL, ISO 9001 e patente        | o briefing pede confirmar certificados antes de publicar | fora da página até a confirmação                                                   |
+| Certificação ABNT, NFPA, UL, ISO 9001 e patente        | o briefing pede confirmar certificados antes de publicar | liberada em 02/11/2026 com os selos enviados: faixa de selos nos diferenciais      |
 | Área "Brasil e América do Sul"                         | o briefing pede confirmar a cobertura                    | nenhuma área declarada                                                             |
 | Linha "Sistema fixo de alarme e detecção" da Safe Mine | o que a campanha negativa não é assunto da página        | oferta só no Kit de Incêndio SEIVE                                                 |
 | Logos de clientes da SEIVE                             | clientes têm de ser do anunciante, com autorização       | bloco de clientes fora                                                             |
+| Números da SEIVE sem logos                             | "clientes" exige 4–8 logos junto com os números          | faixa de 3 números sob os segmentos, com a fonte (02/11/2026)                      |
 | Verde da Safe Mine nos botões                          | botão com texto branco exige 4,5:1                       | verde escurecido (#4d7f22)                                                         |
 | CTA e formulário próprios                              | vocabulário de CTA e shortcode do plugin                 | CTAs do padrão; os 6 campos viraram o painel de dados para cotação                 |
 | Title no formato padrão com mais de 80 caracteres      | title ≤ 70 caracteres                                    | `conteudo.title`: "Supressão de incêndio SEIVE para máquinas pesadas \| Safe Mine" |
 
 ## Dados não aplicados
 
-LSI Náutico e SEIVE LUB; WhatsApp secundário (31) 99710-0350; contatos da SEIVE (telefones, e-mails, CNPJ, endereço); números da SEIVE (6.000 sistemas, 5.000 equipamentos salvos, R$ 6 bi preservados), que só entram com o bloco de clientes; depoimentos do site da SEIVE; demais produtos da Safe Mine; texto institucional.
+LSI Náutico e SEIVE LUB; WhatsApp secundário (31) 99710-0350; contatos da SEIVE (telefones, e-mails, CNPJ, endereço); R$ 6 bi preservados (lê como claim de "evita prejuízo"); logos de clientes da SEIVE; depoimentos do site da SEIVE; demais produtos da Safe Mine; "suporte técnico 24h" e "acionamento em até 15 segundos" (não estão na apresentação — aguardam confirmação do cliente); responsável técnico (eng. José Seabra Junior).
 
 ## Desvio aprovado: abertura no mockup claro da Safe Mine (29/10/2026)
 
@@ -226,3 +227,14 @@ A pedido do usuário, `QuoteForm.astro` e `Footer.astro` (estrutura fixa) seguem
 ## Header restaurado ao padrão (01/11/2026)
 
 A pedido do usuário, o Header deixou a barra branca flutuante do mockup de 29/10/2026 e voltou à estrutura fixa 4.1.1, como nas demais LPs da B2: barra navy `sticky`, a placa branca traz o logo SEIVE, um separador e o Safe Mine, tagline central "Supressão de incêndio" e CTA laranja em caixa-alta ("Cotação" no celular). As âncoras do topo saíram. O Hero voltou ao padding do padrão (`py-20 lg:py-24`), já que o header não é mais sobreposto. A assinatura A8 do Header em `scripts/check-lp.mjs` voltou à da estrutura fixa.
+
+## Conteúdo da apresentação SEIVE incorporado (02/11/2026)
+
+Revisão da LP contra a Apresentação SEIVE Supressor 2026 e o texto do cliente, item a item com o usuário:
+
+- **Certificações:** faixa entre o texto e a barra navy dos diferenciais, com 3 selos — ABNT Nº 270.001/20 (selo "Processo certificado" do PDF, p. 3), Patente Kit SEIVE nº 903706326 (em HTML) e ABNT NBR ISO 9001:2015 (recortado do print enviado, ~130 px; trocar pelo original) — e a nota "NFPA 17 e UL 1254". O selo ABNT traz "PE - 289", mas o texto da apresentação cita a norma "ABNT PE-223": confirmar com o cliente. Os selos ficam em `src/assets/diferenciais/selo-*.png` porque o `check:lp` exige pasta de assets com o slug de uma seção.
+- **Prevenção:** versão curta do texto da p. 13 no parágrafo do kit, sem "morte de pessoas" nem "prejuízos incalculáveis".
+- **Kit:** features técnicas da p. 11–12 nos cards (pressões, pesos, 5 LEDs, 5 A). A apresentação escreve "pressão de trabalho de 21 kg"; a unidade kgf/cm² foi inferida.
+- **Diferenciais:** "sem depender do operador", "2 modos manuais por botoeiras à vista" e o parágrafo com a fabricação nacional (100% brasileira, Contagem/MG, peças e preços em reais, estoque imediato).
+- **Segmentos no lugar de aplicações:** 8 abas com o texto que a ficha já trazia em `segmentos`; as 4 fotos das aplicações foram para mineração, construção, florestal e agronegócio, e as outras 4 abas usam o painel navy com ícone até chegarem fotos. Abaixo, a faixa com +6.000 sistemas, +5.000 equipamentos salvos e +20 anos (fonte: apresentação, p. 6–7, até o 4º tri/2025).
+- **Perguntas frequentes:** as 4 da ficha mais certificação e manutenção, antes dos diferenciais (o ritmo `overlap` dos diferenciais só funciona imediatamente antes da cotação). `SplitHeader.astro` e `Faq.astro` vieram da LP SEIVE LUB, e o `check:lp` passou a aceitar `<SplitHeader>` como cabeçalho, como lá.
