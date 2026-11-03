@@ -12,6 +12,12 @@
  * as normas da Apresentação SEIVE Supressor 2026, p. 2 e 3: certificado ABNT Nº 270.001/20,
  * ISO 9001:2015, patente nº 903706326, NFPA 17 e UL 1254. Logos `cert-*.png` em baixa
  * resolução, recortados do catálogo: trocar pelos arquivos oficiais quando chegarem.
+ *
+ * `metrics`: os 3 números da SEIVE, entre o texto e o CTA (vieram da faixa dos segmentos em
+ * 03/11/2026, a pedido do usuário: são autoridade do fabricante, não prova por segmento).
+ * Desvio aprovado em 02/11/2026: a seção "clientes" exige logos junto com os números; aqui
+ * eles entram sozinhos. Fonte: Apresentação SEIVE Supressor 2026, p. 6 e 7 (dados até o
+ * 4º trimestre de 2025); a nota com a fonte saiu da página a pedido do usuário (03/11/2026).
  */
 import type { IconName } from '@data/icons'
 import type { Photo } from '@data/types'
@@ -29,6 +35,11 @@ export interface Certification {
   alt: string
 }
 
+export interface Metric {
+  value: string
+  label: string
+}
+
 export interface Reason {
   icon: IconName
   title: string
@@ -44,6 +55,12 @@ export const why = {
     src: cenario,
     alt: 'Acionador SEIVE vermelho instalado em máquina amarela',
   },
+  /** Números da SEIVE (fonte nos comentários do topo; a nota na página saiu a pedido, 03/11/2026). */
+  metrics: [
+    { value: '+6.000', label: 'sistemas SEIVE instalados' },
+    { value: '+5.000', label: 'equipamentos salvos' },
+    { value: '+20 anos', label: 'em supressão de incêndio' },
+  ],
   /** Título em uma linha (até ~19 caracteres) e descrição em duas (até ~48) nos cards do desktop. */
   reasons: [
     {
@@ -85,6 +102,7 @@ export const why = {
   titleLines: readonly string[]
   text: string
   scene: Photo
+  metrics: readonly [Metric, Metric, Metric]
   reasons: readonly [Reason, Reason, Reason, Reason, Reason]
   certifications: readonly Certification[]
 }

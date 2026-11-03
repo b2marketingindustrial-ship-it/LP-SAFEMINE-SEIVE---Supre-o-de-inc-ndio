@@ -37,17 +37,17 @@ export interface SystemLine {
 }
 
 export const systems = {
-  eyebrow: 'Dois segmentos de proteção',
-  title: 'Supressão móvel para máquinas e fixa para instalações',
+  eyebrow: 'Sistemas móvel e fixo',
+  title: 'Proteção na máquina e no ambiente',
   /** Trecho do título em verde. */
-  titleHighlight: 'fixa para instalações',
-  text: 'A mesma tecnologia SEIVE em duas frentes: embarcada no equipamento ou instalada no ambiente que precisa de monitoramento permanente.',
+  titleHighlight: 'e no ambiente',
+  text: 'A mesma tecnologia SEIVE, embarcada no equipamento ou instalada onde o risco de incêndio é permanente.',
   items: [
     {
       id: 'movel',
       icon: 'excavator',
       tag: 'Sistema móvel',
-      title: 'Supressão embarcada no equipamento',
+      title: 'Embarcado no equipamento',
       description:
         'Detecta e atua sozinho, sem depender do operador, em máquinas autopropelidas, móveis ou estacionárias.',
       photo: {
@@ -55,42 +55,31 @@ export const systems = {
         alt: 'Retroescavadeira com reservatório supressor SEIVE instalado junto ao motor',
       },
       detail: { src: movelDetalhe, alt: 'Painel de monitoramento SEIVE na cabine' },
-      features: [
-        'Acionamento automático em até 15 s',
-        'Botoeiras manuais à vista',
-        'Painel de monitoramento na cabine',
-      ],
+      features: ['Atua em até 15 s', 'Botoeiras manuais', 'Painel na cabine'],
       appliesTo: 'Onde se aplica',
-      applications: [
-        'Mineração',
-        'Florestal',
-        'Agrícola',
-        'Portuário',
-        'Equipamentos industriais',
-        'Geradores',
-      ],
+      applications: ['Mineração', 'Florestal', 'Agrícola', 'Portuário', 'Indústria', 'Geradores'],
     },
     {
       id: 'fixo',
       icon: 'building',
       tag: 'Sistema fixo',
-      title: 'Alarme, detecção e supressão no ambiente',
+      title: 'Instalado no ambiente',
       description:
-        'Monitora o espaço de forma permanente, identifica sinais de incêndio e emite alertas para uma resposta rápida.',
+        'Detecção, alarme e supressão permanentes para espaços operacionais e habitacionais.',
       photo: {
         src: fixo,
         alt: 'Bateria de cilindros SEIVE do sistema fixo instalada em base de concreto',
       },
       detail: { src: fixoDetalhe, alt: 'Acionador manual de incêndio do sistema fixo SEIVE' },
-      features: ['Monitoramento contínuo', 'Detecção e alarme rápidos', 'Acionador manual'],
+      features: ['Monitoramento contínuo', 'Alarme rápido', 'Acionador manual'],
       appliesTo: 'Onde se aplica',
       applications: [
-        'Salas elétricas e painéis',
+        'Salas elétricas',
         'Data centers',
-        'Usinas e geração de energia',
+        'Usinas de energia',
         'Motores e hidráulica',
-        'Áreas técnicas industriais',
-        'Alojamentos e dormitórios',
+        'Áreas técnicas',
+        'Alojamentos',
       ],
     },
   ],

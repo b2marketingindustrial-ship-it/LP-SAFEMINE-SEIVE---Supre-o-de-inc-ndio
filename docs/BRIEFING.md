@@ -265,3 +265,8 @@ A pedido do usuário, esta LP passou a seguir a padronização de layout, estilo
   - A seção móvel/fixo usa os mesmos cards.
   - Os segmentos viraram a faixa verde de aplicações da LUB, que é o bloco escuro da primeira metade. São 7 cards num carrossel, os 3 números em vidro e "Sua aplicação não está aqui?" no lugar de "Outras aplicações". As descrições encurtaram (os bullets entraram nelas) e os segmentos sem foto mostram o painel verde com ícone. O fundo de chamas saiu.
 - **Textos ajustados para o novo layout:** o parágrafo do hero tem quebra antes de "A Safe Mine"; os selos da cotação ficaram "Atuação automática" e "Acionamento manual"; o texto dos segmentos encurtou; e o FAQ diz "Ficou alguma dúvida sobre a sua aplicação?".
+
+## Ajustes de 03/11/2026 (tarde)
+
+- **Números da SEIVE** (+6.000 sistemas, +5.000 equipamentos salvos, +20 anos) saíram da faixa dos segmentos e foram para o bloco verde dos diferenciais, entre o texto e o CTA: são autoridade do fabricante. A nota com a fonte saiu da página a pedido do usuário; a fonte (apresentação, p. 6 e 7, até o 4º tri/2025) fica no comentário de `diferenciais.ts`.
+- **Sistemas móvel e fixo:** título "Proteção na máquina e no ambiente" (antes "Supressão móvel para máquinas e fixa para instalações"), eyebrow "Sistemas móvel e fixo". Cards mais compactos: foto em 2:1, títulos curtos ("Embarcado no equipamento", "Instalado no ambiente"), checks curtos numa linha e etiquetas de aplicação menores.

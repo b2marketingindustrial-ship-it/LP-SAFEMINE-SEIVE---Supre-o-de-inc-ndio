@@ -9,9 +9,8 @@
  *
  * Os segmentos sem foto entram com o painel verde e o ícone até chegarem fotos.
  *
- * `metrics`: desvio aprovado em 02/11/2026. A seção "clientes" exige logos junto com os
- * números; aqui os 3 números da SEIVE entram sozinhos, numa faixa sob o carrossel.
- * Fonte: Apresentação SEIVE Supressor 2026, p. 6 e 7 (dados até o 4º trimestre de 2025).
+ * Os 3 números da SEIVE ficavam numa faixa sob o carrossel; em 03/11/2026 foram para os
+ * diferenciais (`src/data/sections/diferenciais.ts`), a pedido do usuário.
  */
 import type { IconName } from '@data/icons'
 import type { Photo } from '@data/types'
@@ -27,12 +26,6 @@ export interface Segment {
   label: string
   description: string
   photo?: Photo
-}
-
-export interface Metric {
-  icon: IconName
-  value: string
-  label: string
 }
 
 export const segments = {
@@ -96,13 +89,6 @@ export const segments = {
       description: 'Reach stackers, empilhadeiras de contêineres e guindastes.',
     },
   ],
-  metrics: [
-    { icon: 'shield', value: '+6.000', label: 'sistemas SEIVE instalados' },
-    { icon: 'excavator', value: '+5.000', label: 'equipamentos salvos' },
-    { icon: 'clock', value: '+20 anos', label: 'em supressão de incêndio' },
-  ],
-  /** Fonte dos números, exibida sob a faixa. */
-  metricsNote: 'Dados da SEIVE, fabricante do sistema, até o 4º trimestre de 2025.',
 } as const satisfies {
   eyebrow: string
   title: string
@@ -111,6 +97,4 @@ export const segments = {
   cardCta: string
   help: { title: string; text: string }
   items: readonly Segment[]
-  metrics: readonly [Metric, Metric, Metric]
-  metricsNote: string
 }
