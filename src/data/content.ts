@@ -11,7 +11,7 @@
 import type { IconName } from './icons'
 import type { Photo } from './types'
 
-import heroBg from '@assets/heroBg.png'
+import heroBg from '@assets/heroBg.jpg'
 
 /* ------------------------------------------------------------------ tipos */
 
@@ -60,7 +60,7 @@ export const hero = {
   text: 'Embarcado em máquinas pesadas ou instalado em ambientes críticos.\nA Safe Mine ajuda a dimensionar a solução para a sua aplicação.',
   banner: {
     src: heroBg,
-    alt: 'Escavadeira com reservatório supressor SEIVE instalado, em operação numa mina',
+    alt: 'Reservatórios e cilindros supressores SEIVE, vermelhos e azuis, em galpão industrial',
     /** Larguras geradas: as mesmas no <Picture> do Hero e no preload do Layout. */
     widths: [640, 1024, 1536, 1981],
     sizes: '(min-width: 1024px) 1700px, 100vw',
