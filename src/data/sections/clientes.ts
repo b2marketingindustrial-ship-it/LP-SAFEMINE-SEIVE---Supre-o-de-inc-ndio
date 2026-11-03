@@ -3,8 +3,8 @@
  *
  * Seção trazida da LP SEIVE LUB em 03/11/2026, a pedido do usuário, com os mesmos logos.
  * Logos da página 5 do catálogo SEIVE LUB 2024: são clientes da fabricante SEIVE (lubrificação),
- * não da Safe Mine, e entraram na LP LUB com o aval da B2 em 01/11/2026. Por isso o texto fala
- * da tecnologia SEIVE, e não do supressor: confirmar se a lista vale para a supressão. Vieram do PDF
+ * não da Safe Mine, e entraram na LP LUB com o aval da B2 em 01/11/2026. O usuário confirmou em
+ * 03/11/2026 que são clientes SEIVE e valem para esta LP. O texto fala da SEIVE, a fabricante. Vieram do PDF
  * em baixa resolução (cerca de 75×22 px cada); troque pelos arquivos originais quando
  * chegarem. Nesta LP são 17 logos agrupados por setor, como no catálogo, acima dos 4–8 da
  * biblioteca, e sem os números (saíram a pedido do usuário em 03/11/2026). O logo da
