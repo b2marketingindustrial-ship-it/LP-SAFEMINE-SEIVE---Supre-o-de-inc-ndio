@@ -11,9 +11,10 @@
     ],
     "apoio": [],
     "prova": [
-      "aplicacoes"
+      "segmentos"
     ],
     "autoridade": [
+      "perguntas",
       "diferenciais"
     ]
   },
@@ -89,13 +90,13 @@
       ]
     },
     {
-      "slug": "aplicacoes",
-      "id": "aplicacoes",
-      "title": "Aplicações",
+      "slug": "segmentos",
+      "id": "segmentos",
+      "title": "Segmentos atendidos",
       "phase": "prova",
-      "component": "ApplicationsGallery.astro",
-      "data": "aplicacoes.ts",
-      "dataExport": "applications",
+      "component": "SegmentsShowcase.astro",
+      "data": "segmentos.ts",
+      "dataExport": "segments",
       "carriesNavy": false,
       "tone": "gray",
       "rhythm": "even",
@@ -108,35 +109,78 @@
         "even",
         "flow"
       ],
-      "exampleHash": "61d1254bd3fc3c58",
       "ctas": [
-        "aplicacoes-{item.id}"
+        "segmentos-{item.id}"
       ],
       "contract": {
         "itemsPath": "items",
-        "itemsMin": 4,
-        "itemsMax": 4,
+        "itemsMin": 8,
+        "itemsMax": 8,
         "requiredItemFields": [
           "id",
+          "icon",
           "label",
           "description",
-          "photo"
+          "bullets"
         ],
+        "itemArrays": {
+          "bullets": 3
+        },
         "maxLength": {
           "text": 170,
-          "item.description": 90
+          "item.description": 160
         }
       },
       "assets": [
         {
-          "dir": "aplicacoes",
-          "files": "4 fotos",
-          "spec": "JPG/PNG 1200×900 (4:3), equipamento em operação",
+          "dir": "segmentos",
+          "files": "até 8 fotos (opcionais)",
+          "spec": "JPG/PNG 1200×900 (4:3), setor em operação",
           "width": 1200,
           "height": 900,
           "alpha": false
         }
       ]
+    },
+    {
+      "carriesNavy": false,
+      "tones": [
+        "light",
+        "gray"
+      ],
+      "assets": [],
+      "slug": "perguntas",
+      "id": "perguntas",
+      "title": "Perguntas frequentes",
+      "phase": "autoridade",
+      "component": "Faq.astro",
+      "data": "perguntas.ts",
+      "dataExport": "faq",
+      "tone": "gray",
+      "rhythm": "even",
+      "rhythms": [
+        "even",
+        "tight",
+        "flow"
+      ],
+      "ctas": [
+        "perguntas-cta"
+      ],
+      "contract": {
+        "itemsPath": "items",
+        "itemsMin": 4,
+        "itemsMax": 8,
+        "requiredItemFields": [
+          "question",
+          "answer"
+        ],
+        "endsWith": {
+          "item.question": "?"
+        },
+        "maxLength": {
+          "text": 170
+        }
+      }
     },
     {
       "slug": "diferenciais",
@@ -196,5 +240,5 @@
       ]
     }
   ],
-  "excecao": "29/10/2026: identificar removido a pedido do cliente; aplicacoes em ritmo even (docs/BRIEFING.md)"
+  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md)"
 }

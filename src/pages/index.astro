@@ -11,7 +11,8 @@
  * fora da biblioteca. Os dois slots de shortcode saem de `site.ts`.
  *
  * Exceção desta LP (29/10/2026, docs/BRIEFING.md): o painel "identificar" (fase de
- * apoio) foi removido a pedido do cliente, e "aplicacoes" passou ao ritmo `even`.
+ * apoio) foi removido a pedido do cliente. Em 02/11/2026, "aplicacoes" deu lugar a
+ * "segmentos" (ritmo `even`) e "perguntas" entrou na fase de autoridade.
  * O compositor recusa essa composição, por isso este arquivo e `lp.manifest.json`
  * foram ajustados à mão — não rode `npm run compose` sem reaplicar a exceção.
  */
@@ -21,7 +22,8 @@ import Hero from '../components/Hero.astro'
 import QuoteForm from '../components/QuoteForm.astro'
 import Footer from '../components/Footer.astro'
 import ProductLines from '../components/sections/ProductLines.astro'
-import ApplicationsGallery from '../components/sections/ApplicationsGallery.astro'
+import SegmentsShowcase from '../components/sections/SegmentsShowcase.astro'
+import Faq from '../components/sections/Faq.astro'
 import WhyBrand from '../components/sections/WhyBrand.astro'
 import { shortcodes } from '../data/site'
 ---
@@ -34,7 +36,8 @@ import { shortcodes } from '../data/site'
       <Fragment slot="shortcode">{shortcodes.chat}</Fragment>
     </Hero>
     <ProductLines tone="light" rhythm="open" />
-    <ApplicationsGallery tone="gray" rhythm="even" />
+    <SegmentsShowcase tone="gray" rhythm="even" />
+    <Faq tone="gray" rhythm="even" />
     <WhyBrand tone="gray" rhythm="overlap" />
     <QuoteForm>
       <Fragment slot="shortcode">{shortcodes.form}</Fragment>

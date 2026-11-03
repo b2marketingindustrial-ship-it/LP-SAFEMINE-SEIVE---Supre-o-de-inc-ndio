@@ -14,6 +14,11 @@ import { site } from '@data/site'
 
 import cenario from '@assets/diferenciais/cenario.jpg'
 import pessoa from '@assets/diferenciais/pessoa.png'
+import seloAbnt from '@assets/diferenciais/selo-abnt-processo-certificado.png'
+import seloIso from '@assets/diferenciais/selo-abnt-iso-9001.png'
+
+/** Selo de certificação: imagem do selo, ou o número da patente desenhado em HTML. */
+export type Seal = { label: string; image: Photo } | { label: string; patent: string }
 
 export interface Reason {
   icon: IconName
@@ -25,7 +30,7 @@ export const why = {
   eyebrow: 'Diferenciais SEIVE',
   /** Cada item é uma linha do H2 (quebra forçada); a segunda sai em verde. 3–6 palavras. */
   titleLines: ['Proteção de ativos', 'com tecnologia SEIVE.'],
-  text: `A ${site.brandShort} fornece o sistema SEIVE com atendimento consultivo. A solução é indicada conforme a máquina, a aplicação e o ambiente de cada operação.`,
+  text: `A ${site.brandShort} fornece o sistema SEIVE com atendimento consultivo. Tecnologia 100% brasileira, fabricada em Contagem/MG, com peças e preços em reais e estoque com disponibilidade imediata.`,
   /** Selo sob o botão. */
   trust: { icon: 'chat', label: 'Conte qual equipamento você precisa proteger.' },
   scene: {
@@ -40,12 +45,12 @@ export const why = {
     {
       icon: 'zap',
       title: 'Detecção e atuação',
-      description: 'Atuação automática conforme a configuração do sistema.',
+      description: 'Da detecção à atuação, sem depender do operador.',
     },
     {
       icon: 'power',
       title: 'Acionamento manual',
-      description: 'Possibilidade de intervenção manual por botoeiras.',
+      description: '2 modos manuais por botoeiras à vista.',
     },
     {
       icon: 'gear',
@@ -63,6 +68,27 @@ export const why = {
       description: 'Canal técnico direto durante o período de garantia.',
     },
   ],
+  /**
+   * Faixa de certificações entre o texto e a barra navy (aprovada em 02/11/2026). Fonte:
+   * Apresentação SEIVE Supressor 2026, p. 2 e 3, e os selos enviados pelo cliente.
+   * O selo ABNT vem do PDF; o ABNT ISO 9001 foi recortado do print enviado (baixa
+   * resolução) — troque pelo arquivo original quando chegar.
+   */
+  certifications: {
+    title: 'Certificações e normas',
+    note: 'Atende aos requisitos aplicáveis das normas internacionais NFPA 17 e UL 1254.',
+    seals: [
+      {
+        label: 'ABNT Nº 270.001/20',
+        image: { src: seloAbnt, alt: 'Selo ABNT Processo Certificado' },
+      },
+      { label: 'Patente Kit SEIVE', patent: '903706326' },
+      {
+        label: 'ABNT NBR ISO 9001:2015',
+        image: { src: seloIso, alt: 'Selo ABNT Sistema Certificado NBR ISO 9001' },
+      },
+    ],
+  },
 } as const satisfies {
   eyebrow: string
   titleLines: readonly [string, string]
@@ -71,4 +97,5 @@ export const why = {
   scene: Photo
   person: Photo
   reasons: readonly [Reason, Reason, Reason, Reason, Reason]
+  certifications: { title: string; note: string; seals: readonly [Seal, Seal, Seal] }
 }

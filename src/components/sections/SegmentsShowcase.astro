@@ -1,0 +1,302 @@
+---
+/**
+ * Segmentos atendidos — fase "prova" da biblioteca B2. Substituiu a galeria de aplicações
+ * em 02/11/2026 (docs/BRIEFING.md) e mantém o fundo claro com chamas do mockup aprovado.
+ *
+ * Três colunas no desktop: abas verticais, painel visual (foto, ou painel navy com ícone
+ * quando o segmento não tem foto) e detalhe com bullets e CTA `segmentos-{id}`. No celular,
+ * as abas viram uma faixa horizontal rolável. 8 abas exatas, a última é "outras".
+ *
+ * Abaixo das abas, a faixa com os 3 números da SEIVE e a fonte (desvio aprovado: números
+ * sem o bloco de logos da seção "clientes").
+ */
+import { Image } from 'astro:assets'
+import Section from '@components/Section.astro'
+import SplitHeader from '@components/SplitHeader.astro'
+import Icon from '@components/Icon.astro'
+import Button from '@components/Button.astro'
+import type { SectionProps } from '@lib/layout'
+import { cta } from '@data/content'
+import { segments, type Segment } from '@data/sections/segmentos'
+
+import fundo from '@assets/fundo-chamas-claro.jpg'
+
+type Props = SectionProps
+
+const { tone, rhythm } = Astro.props
+// Tipado pela interface: sem isso, os itens sem foto apagam `photo` do tipo inferido.
+const items: readonly Segment[] = segments.items
+const first = items[0].id
+---
+
+{/* -mb-6 + z-[1]: o fundo com as chamas cobre o respiro de 24px (pt-6) da seção seguinte;
+    o degradê no pé leva o branco e as chamas até o cinza das perguntas, sem corte reto. */}
+<Section
+  id="segmentos"
+  tone={tone}
+  rhythm={rhythm}
+  class="relative isolate z-[1] -mb-6 overflow-hidden"
+  data-segments
+>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-neutral-light">
+    <Image
+      src={fundo}
+      alt=""
+      format="webp"
+      widths={[768, 1280, 1672]}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      class="absolute bottom-0 left-0 h-auto w-full max-w-none min-w-[48rem] max-sm:left-1/2 max-sm:-translate-x-1/2 sm:min-w-0"
+    />
+    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-neutral-gray-100"></div>
+  </div>
+
+  <div class="pt-4 pb-10 lg:pt-6 lg:pb-14">
+    <SplitHeader
+      eyebrow={segments.eyebrow}
+      title={segments.title}
+      highlight={segments.titleHighlight}
+      text={segments.text}
+    />
+
+    <div class="mt-10 grid grid-cols-1 gap-6 lg:mt-12 lg:grid-cols-[240px_minmax(0,1fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8 xl:grid-cols-[260px_minmax(0,1fr)_minmax(0,1fr)] xl:gap-10">
+      {/* Coluna 1: abas */}
+      <div class="flex min-w-0 flex-col">
+        <div
+          role="tablist"
+          aria-label={segments.eyebrow}
+          aria-orientation="vertical"
+          class="scroll-track -mx-6 flex max-w-[calc(100%+3rem)] gap-1.5 overflow-x-auto px-6 pb-2 lg:mx-0 lg:max-w-none lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0"
+        >
+          {items.map((segment) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${segment.id}`}
+              aria-controls={`panel-${segment.id}`}
+              aria-selected={segment.id === first ? 'true' : 'false'}
+              tabindex={segment.id === first ? 0 : -1}
+              data-segment={segment.id}
+              class="segment-tab group relative flex shrink-0 items-center gap-3 overflow-hidden rounded-xl border border-primary-dark/10 bg-neutral-light px-3.5 py-2.5 text-left font-sans text-[14px] font-semibold whitespace-nowrap text-ink shadow-[0_1px_2px_rgba(10,29,77,0.05)] transition-[background-color,color,border-color] duration-200 hover:border-accent-orange/50 lg:w-full lg:whitespace-normal"
+            >
+              <Icon
+                name={segment.icon}
+                class="segment-tab__icon size-4 shrink-0 text-accent-orange"
+              />
+              <span class="flex-1">{segment.label}</span>
+              <Icon
+                name="chevron-right"
+                class="segment-tab__chevron hidden size-4 shrink-0 text-ink/35 transition-[color,transform] duration-200 group-hover:translate-x-0.5 lg:block"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Coluna 2: painel visual */}
+      <div class="relative min-h-[240px] min-w-0 overflow-hidden rounded-2xl shadow-[0_26px_50px_-30px_rgba(10,29,77,0.4)] sm:min-h-[320px] lg:min-h-[360px]">
+        {items.map((segment, i) => (
+          <div
+            data-visual={segment.id}
+            hidden={segment.id !== first}
+            class="segment-visual absolute inset-0"
+          >
+            {segment.photo ? (
+              <>
+                <Image
+                  src={segment.photo.src}
+                  alt={segment.photo.alt}
+                  format="webp"
+                  width={900}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover object-center"
+                />
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-dark-900/70 via-primary-dark-900/10 to-transparent"
+                />
+              </>
+            ) : (
+              <div class="navy-premium relative h-full w-full">
+                <span
+                  aria-hidden="true"
+                  class="blueprint-grid pointer-events-none absolute inset-0"
+                />
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="glass-badge flex size-24 items-center justify-center rounded-full text-brand-green">
+                    <Icon name={segment.icon} class="size-10" />
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <div class="absolute bottom-5 left-6 z-[2] flex items-center gap-3">
+              <span class="font-display text-[11px] font-extrabold tracking-[0.2em] text-brand-green">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span aria-hidden="true" class="h-px w-8 bg-neutral-light/40" />
+              <span class="font-sans text-[12px] font-semibold tracking-[0.12em] text-neutral-light uppercase">
+                {segment.label}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Coluna 3: detalhe */}
+      <div class="relative min-w-0 lg:py-1">
+        {items.map((segment) => (
+          <div
+            role="tabpanel"
+            id={`panel-${segment.id}`}
+            aria-labelledby={`tab-${segment.id}`}
+            data-panel={segment.id}
+            hidden={segment.id !== first}
+            class="segment-panel flex flex-col items-start"
+          >
+            <span class="flex size-14 items-center justify-center rounded-full border-2 border-accent-orange text-accent-orange">
+              <Icon name={segment.icon} class="size-6" />
+            </span>
+
+            <h3 class="mt-4 font-display text-[1.3rem] leading-tight font-extrabold text-primary-dark-900 sm:text-[1.6rem]">
+              {segment.label}
+            </h3>
+
+            <span aria-hidden="true" class="mt-3 h-1 w-12 rounded-full bg-accent-orange" />
+
+            <p class="mt-3 font-sans text-[15px] leading-relaxed text-ink-soft sm:text-base">
+              {segment.description}
+            </p>
+
+            <ul class="mt-4 flex flex-col gap-2">
+              {segment.bullets.map((bullet) => (
+                <li class="flex items-center gap-3 font-sans text-[15px] font-medium text-ink">
+                  <span class="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent-orange/10 text-accent-orange">
+                    <Icon name="check" class="size-3" />
+                  </span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+
+            <Button cta={`segmentos-${segment.id}`} size="md" class="mt-6">
+              {cta.primary}
+            </Button>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Números da SEIVE */}
+    <div class="mt-10 rounded-2xl bg-neutral-light/90 px-6 py-6 shadow-[0_26px_50px_-34px_rgba(10,29,77,0.35)] ring-1 ring-primary-dark/[0.06] backdrop-blur-sm sm:px-8 lg:mt-12">
+      <ul class="grid gap-6 sm:grid-cols-3">
+        {segments.metrics.map((metric) => (
+          <li class="flex items-center gap-4">
+            <span class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent-orange/10 text-accent-orange">
+              <Icon name={metric.icon} class="size-6" />
+            </span>
+            <span class="font-sans leading-tight">
+              <span class="block font-display text-[1.6rem] font-extrabold text-primary-dark-900">
+                {metric.value}
+              </span>
+              <span class="text-[14px] text-ink-soft">{metric.label}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-5 border-t border-primary-dark/10 pt-4 font-sans text-[13px] text-ink-soft">
+        {segments.metricsNote}
+      </p>
+    </div>
+  </div>
+</Section>
+
+<style>
+  .segment-tab[aria-selected='true'] {
+    background-color: var(--color-primary-dark-900);
+    border-color: var(--color-primary-dark-900);
+    color: var(--color-neutral-light);
+  }
+
+  .segment-tab[aria-selected='true'] .segment-tab__icon,
+  .segment-tab[aria-selected='true'] .segment-tab__chevron {
+    color: var(--color-brand-green);
+  }
+
+  .segment-visual,
+  .segment-panel {
+    animation: segment-in 320ms ease-out both;
+  }
+
+  @keyframes segment-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .segment-visual,
+    .segment-panel {
+      animation: none;
+    }
+
+    .segment-tab,
+    .segment-tab * {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const roots = document.querySelectorAll<HTMLElement>('[data-segments]')
+
+  roots.forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-panel]'))
+    const visuals = Array.from(root.querySelectorAll<HTMLElement>('[data-visual]'))
+
+    const activate = (id: string, focus = false) => {
+      tabs.forEach((tab) => {
+        const active = tab.dataset.segment === id
+        tab.setAttribute('aria-selected', active ? 'true' : 'false')
+        tab.tabIndex = active ? 0 : -1
+        if (active && focus) tab.focus()
+        if (active) tab.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+      })
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== id
+      })
+      visuals.forEach((visual) => {
+        visual.hidden = visual.dataset.visual !== id
+      })
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab.dataset.segment ?? ''))
+
+      tab.addEventListener('keydown', (event) => {
+        const next =
+          event.key === 'ArrowDown' || event.key === 'ArrowRight'
+            ? index + 1
+            : event.key === 'ArrowUp' || event.key === 'ArrowLeft'
+              ? index - 1
+              : event.key === 'Home'
+                ? 0
+                : event.key === 'End'
+                  ? tabs.length - 1
+                  : null
+        if (next === null) return
+        event.preventDefault()
+        const target = tabs[(next + tabs.length) % tabs.length]
+        activate(target.dataset.segment ?? '', true)
+      })
+    })
+  })
+</script>
