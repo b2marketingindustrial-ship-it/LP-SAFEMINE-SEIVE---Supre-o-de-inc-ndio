@@ -77,14 +77,11 @@ export const iconPaths = {
   instagram:
     '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/>',
   whatsapp:
-    '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path d="M8.8 8.3c.3-.4.8-.4 1 .1l.6 1.4c.1.3 0 .6-.2.8l-.5.5a5.6 5.6 0 0 0 2.9 2.9l.5-.5c.2-.2.5-.3.8-.2l1.4.6c.5.2.5.7.1 1-.7.6-1.7.9-2.7.5a7 7 0 0 1-3.9-3.9c-.4-1-.1-2 .5-2.7z"/>',
-  lock: '<rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5v-3a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2"/>',
+    '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path d="M9.2 8.4c.3-.4.8-.4 1 0l.8 1.3c.2.3.1.7-.1.9l-.5.5c.5 1 1.3 1.8 2.3 2.3l.5-.5c.2-.2.6-.3.9-.1l1.3.8c.4.2.4.7 0 1-.6.5-1.5.7-2.3.4a7.3 7.3 0 0 1-4.3-4.3c-.3-.8-.1-1.7.4-2.3Z"/>',
   shield:
     '<path d="M12 3.3 5.2 6v5.3c0 4.2 2.8 7.9 6.8 9.4 4-1.5 6.8-5.2 6.8-9.4V6L12 3.3Z"/><path d="m9.2 11.9 2 2 3.6-4"/>',
   truck:
     '<rect x="2.8" y="6.8" width="10.6" height="9.4" rx="1"/><path d="M13.4 10.2h3.3l2.8 3v3h-6.1z"/><circle cx="7" cy="18" r="1.7"/><circle cx="16.4" cy="18" r="1.7"/>',
-  excavator:
-    '<rect x="2" y="16.5" width="12" height="4" rx="2"/><path d="M3 16.5V12h7.5v4.5"/><path d="M4.5 12V8.5h3.3L9 12"/><path d="m10.5 13 5-7.5 4.5 3"/><path d="m20 8.5 1.5 3.5-3 .5Z"/>',
   barcode: '<path d="M4 5v14M7.2 5v14M9.6 5v14M13 5v14M15.4 5v14M18 5v14M20.5 5v14"/>',
   'trend-up': '<path d="M3.5 16.5 9 11l4 4 7.5-8.5"/><path d="M15 6.5h5.5V12"/>',
   power: '<path d="M12 3.5v8"/><path d="M6.6 6.9a8 8 0 1 0 10.8 0"/>',
@@ -94,6 +91,18 @@ export const iconPaths = {
   alert: '<path d="M12 4.3 21 19.7H3L12 4.3Z"/><path d="M12 10v3.8"/><path d="M12 16.8h.01"/>',
   'clipboard-check':
     '<rect x="5" y="4.5" width="14" height="16" rx="2"/><path d="M9 4.5V3.4c0-.5.4-.9.9-.9h4.2c.5 0 .9.4.9.9v1.1"/><path d="m9.2 12.6 2 2 3.6-4"/>',
+  road: '<path d="M8.5 3.5 4 20.5M15.5 3.5l4.5 17"/><path d="M12 4.5v2.5M12 10.5v3M12 17v3.5"/>',
+  blast:
+    '<rect x="2.5" y="9.5" width="7" height="5" rx="1"/><path d="M9.5 12H12"/><circle cx="15.5" cy="8.5" r="1.3"/><circle cx="19" cy="12" r="1.3"/><circle cx="15.5" cy="15.5" r="1.3"/><path d="M20.5 6h.01M20.5 18h.01"/>',
+  drill:
+    '<path d="M12 3 7.2 20.5M12 3l4.8 17.5"/><path d="M10.6 8.2h2.8M9.4 12.6h5.2M8.2 17h7.6"/><path d="M4.5 20.5h15"/>',
+  plug: '<path d="M9 3.5v4M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0v-3Z"/><path d="M12 16v4.5"/>',
+  excavator:
+    '<rect x="2" y="16.5" width="12" height="4" rx="2"/><path d="M3 16.5V12h7.5v4.5"/><path d="M4.5 12V8.5h3.3L9 12"/><path d="m10.5 13 5-7.5 4.5 3"/><path d="m20 8.5 1.5 3.5-3 .5Z"/>',
+  lock: '<rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5v-3a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"/>',
+  engine:
+    '<path d="M9.5 5.5h5M12 5.5v2"/><rect x="7" y="7.5" width="10" height="9.5" rx="1.5"/><path d="M7 10.5H4.5v4H7M17 10h2.5v4.5H17"/><path d="M2.5 12.5h2M9.5 10.5h5M9.5 14h5"/>',
 } as const satisfies Record<string, string>
 
 export type IconName = keyof typeof iconPaths

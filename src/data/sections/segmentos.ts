@@ -1,12 +1,16 @@
 /**
  * Dados da seção "Segmentos atendidos" (biblioteca B2, fase: prova).
  *
- * Substituiu "aplicacoes" em 02/11/2026, a pedido do usuário: os 4 cards viraram 8 abas,
- * com o texto que a ficha já trazia em `segmentos`. As 4 fotos são as das antigas
- * aplicações; as outras abas entram sem foto (painel navy com ícone) até chegarem fotos.
+ * Substituiu "aplicacoes" em 02/11/2026. Em 03/11/2026 passou ao layout da galeria de
+ * aplicações da LP SEIVE LUB (pedido do usuário: mesma estética): faixa verde de largura
+ * total, carrossel de cards-botão e, abaixo, a faixa "não está aqui?" (o antigo segmento
+ * "Outras aplicações"). As descrições ficaram curtas, com o que eram os 3 bullets de cada
+ * segmento, para caber nas duas linhas do card.
+ *
+ * Os segmentos sem foto entram com o painel verde e o ícone até chegarem fotos.
  *
  * `metrics`: desvio aprovado em 02/11/2026. A seção "clientes" exige logos junto com os
- * números; aqui os 3 números da SEIVE entram sozinhos, numa faixa sob as abas.
+ * números; aqui os 3 números da SEIVE entram sozinhos, numa faixa sob o carrossel.
  * Fonte: Apresentação SEIVE Supressor 2026, p. 6 e 7 (dados até o 4º trimestre de 2025).
  */
 import type { IconName } from '@data/icons'
@@ -22,7 +26,6 @@ export interface Segment {
   icon: IconName
   label: string
   description: string
-  bullets: readonly [string, string, string]
   photo?: Photo
 }
 
@@ -35,77 +38,62 @@ export interface Metric {
 export const segments = {
   eyebrow: 'Segmentos atendidos',
   title: 'Proteção para cada setor da operação',
-  /** Trecho do título em verde. */
+  /** Trecho do título em amarelo. */
   titleHighlight: 'cada setor da operação',
-  text: 'O sistema é dimensionado conforme o equipamento e a aplicação, em máquinas autopropelidas, móveis ou estacionárias.',
+  text: 'O projeto se adapta ao equipamento e à aplicação. Escolha o segmento e fale com a equipe.',
+  /** Chamada no pé de cada card (o card inteiro é o botão). */
+  cardCta: 'Cotar para este segmento',
+  /** Faixa abaixo dos cards, para quem não se vê nos segmentos. */
+  help: {
+    title: 'Sua aplicação não está aqui?',
+    text: 'Colhedoras de algodão, equipamentos estacionários, frotas de locação ou instalações fixas: descreva e a Safe Mine ajuda na seleção.',
+  },
   items: [
     {
       id: 'mineracao',
       icon: 'mountain',
       label: 'Mineração',
-      description:
-        'Operação abrasiva, com ar carregado e descargas elétricas constantes, onde uma máquina parada pesa no custo da produção.',
-      bullets: ['Caminhões fora de estrada', 'Escavadeiras e carregadeiras', 'Perfuratrizes'],
+      description: 'Caminhões fora de estrada, escavadeiras e perfuratrizes.',
       photo: { src: mineracao, alt: 'Caminhão fora de estrada em mina' },
     },
     {
       id: 'construcao',
       icon: 'truck',
       label: 'Construção',
-      description:
-        'Escavadeiras, carregadeiras e outros autopropelidos de obras e infraestrutura, com projeto conforme os pontos de risco.',
-      bullets: ['Escavadeiras', 'Pás carregadeiras', 'Máquinas de obras'],
+      description: 'Escavadeiras, pás carregadeiras e máquinas de obras.',
       photo: { src: construcao, alt: 'Escavadeira com reservatório supressor SEIVE em mina' },
     },
     {
       id: 'florestal',
       icon: 'leaf',
       label: 'Florestal',
-      description:
-        'Colheita e baldeio de madeira, uma das operações de maior risco, com galhos e resíduos secos em volta do equipamento.',
-      bullets: ['Harvesters', 'Forwarders', 'Escavadeiras florestais'],
+      description: 'Harvesters e forwarders entre galhos e resíduos secos.',
       photo: { src: florestal, alt: 'Máquina florestal carregando toras' },
     },
     {
       id: 'agronegocio',
       icon: 'grid',
       label: 'Agronegócio',
-      description:
-        'Máquinas que plantam e colhem em jornadas longas, com palha e poeira junto ao motor, onde uma parada custa a safra.',
-      bullets: ['Colheitadeiras de grãos', 'Tratores', 'Pulverizadores autopropelidos'],
+      description: 'Colheitadeiras, tratores e pulverizadores em jornadas longas.',
       photo: { src: agronegocio, alt: 'Colheitadeira em lavoura de grãos' },
     },
     {
       id: 'industria',
       icon: 'factory',
       label: 'Indústria',
-      description:
-        'Equipamentos industriais e de pátio em operação contínua, onde um princípio de incêndio interrompe a produção.',
-      bullets: ['Equipamentos de pátio', 'Instalações industriais', 'Áreas técnicas'],
+      description: 'Equipamentos de pátio e áreas técnicas em operação contínua.',
     },
     {
       id: 'sucroenergetico',
       icon: 'droplet',
       label: 'Sucroenergético',
-      description:
-        'Colheita mecanizada de cana em operação contínua, com palha e bagaço secos perto das partes quentes da máquina.',
-      bullets: ['Colhedoras de cana', 'Tratores e transbordos', 'Caminhões canavieiros'],
+      description: 'Colhedoras de cana e transbordos com palha e bagaço secos.',
     },
     {
       id: 'portuario',
       icon: 'box',
       label: 'Portuário',
-      description:
-        'Movimentação de contêineres e cargas em turnos contínuos, onde um incêndio para o pátio e atrasa a operação.',
-      bullets: ['Reach stackers', 'Empilhadeiras de contêineres', 'Guindastes móveis'],
-    },
-    {
-      id: 'outras',
-      icon: 'dots',
-      label: 'Outras aplicações',
-      description:
-        'Avaliamos outras máquinas com risco de incêndio, como colhedoras de algodão, equipamentos estacionários e frotas de locação.',
-      bullets: ['Colhedoras de algodão', 'Equipamentos estacionários', 'Frotas de locação'],
+      description: 'Reach stackers, empilhadeiras de contêineres e guindastes.',
     },
   ],
   metrics: [
@@ -120,7 +108,9 @@ export const segments = {
   title: string
   titleHighlight: string
   text: string
-  items: readonly [Segment, Segment, Segment, Segment, Segment, Segment, Segment, Segment]
+  cardCta: string
+  help: { title: string; text: string }
+  items: readonly Segment[]
   metrics: readonly [Metric, Metric, Metric]
   metricsNote: string
 }

@@ -250,3 +250,18 @@ A pedido do usuário: a supressão de incêndio da Safe Mine tem dois segmentos,
 - **A confirmar com o cliente:** o site chama o fixo de "Sistema Fixo de Alarme e Detecção" e, no mesmo produto, de "sistemas automáticos de supressão de incêndio para espaços operacionais e habitacionais"; as fotos mostram baterias de cilindros SEIVE. A LP diz "Alarme, detecção e supressão no ambiente".
 - **A revisar na campanha:** as negativas de oferta `central de alarme` e `detecção para data center` excluem justamente o público do sistema fixo. A página não usa esses termos literais, mas a campanha precisa ser revista se o fixo também for anunciado.
 - `npm run ficha -- --check` não roda neste servidor (a biblioteca do starter não está ao lado da LP); `check:lp`, lint, prettier, `astro check` e build passam.
+
+## Estética da LP SEIVE LUB (03/11/2026)
+
+A pedido do usuário, esta LP passou a seguir a padronização de layout, estilo, cores, estrutura das seções e header da LP SEIVE LUB (`../LP-SAFEMINE-SEIVE---Lubrifica-o-centralizada`). O conteúdo da supressão não mudou, salvo os ajustes de texto listados abaixo.
+
+- **Paleta SEIVE no lugar do azul da Safe Mine:** os tokens de `global.css` são os da LUB (verdes da logo SEIVE em tons, amarelo da folha para destaques sobre fundo escuro, ação em #00824b). Vêm junto a superfície verde com luzes e grão (`--seive-surface-*`), as texturas claras e as sombras (`card-shadow`, `panel-shadow`). A Manrope continua servida pelo próprio site (fontsource), por causa do CLS.
+- **Respiro e fundos:** todas as seções usam o ritmo `uniform` (70px em cima e embaixo). Os fundos alternam seção a seção (sistemas branco, kit cinza, segmentos cinza sob a faixa verde, perguntas branco, diferenciais cinza), e o `check:lp` passou à regra da LUB. A seção acima dos diferenciais tem a base arredondada sobre o bloco verde.
+- **Estrutura fixa (copiada da LUB):** header branco com as logos, a tagline com selo e o CTA verde; hero com véus verdes, título em três linhas e destaque amarelo (a nota sob os botões foi mantida); cotação sem card e sem a nota de LGPD, com a linha "Atendemos pelo formulário ou pelo WhatsApp"; rodapé verde que sobe sob a base arredondada da cotação.
+- **Seções:**
+  - Perguntas e diferenciais usam os componentes da LUB.
+  - Os diferenciais têm bloco verde com foto, CTA amarelo e os 5 selos (ABNT, ISO 9001, patente, UL, NFPA, os mesmos arquivos `cert-*.png` da LUB). O recorte do técnico e os selos antigos saíram.
+  - O kit passou aos cards da LUB, com a faixa de peças e suporte em verde e CTA amarelo.
+  - A seção móvel/fixo usa os mesmos cards.
+  - Os segmentos viraram a faixa verde de aplicações da LUB, que é o bloco escuro da primeira metade. São 7 cards num carrossel, os 3 números em vidro e "Sua aplicação não está aqui?" no lugar de "Outras aplicações". As descrições encurtaram (os bullets entraram nelas) e os segmentos sem foto mostram o painel verde com ícone. O fundo de chamas saiu.
+- **Textos ajustados para o novo layout:** o parágrafo do hero tem quebra antes de "A Safe Mine"; os selos da cotação ficaram "Atuação automática" e "Acionamento manual"; o texto dos segmentos encurtou; e o FAQ diz "Ficou alguma dúvida sobre a sua aplicação?".

@@ -189,11 +189,12 @@ for (const f of astroFiles) {
 
 /* A8. Estrutura fixa: assinaturas do Header, Hero, Cotação e Footer ---------- */
 {
-  // Header e Hero seguem a estrutura fixa 4.1.1 e 4.1.2 (restaurados em 01/11/2026).
-  // Cotação e Footer repinados para o mockup da cotação (30/10/2026): formulário em card
-  // (grid 0.85fr · 1fr) e rodapé navy sólido com filete verde.
+  // Hero segue a estrutura fixa 4.1.2 (restaurado em 01/11/2026). Header, Cotação e Footer com o
+  // desvio de 03/11/2026 (docs/BRIEFING.md): os mesmos da LP SEIVE LUB (barra branca, cotação
+  // sem card, rodapé verde).
+  // A assinatura foi repinada na estrutura nova e continua guardando contra mudança acidental.
   const expect = {
-    'Header.astro': ['sticky top-0 z-50', 'bg-primary-dark-900', 'cta="header-cta"'],
+    'Header.astro': ['sticky top-0 z-50', 'bg-neutral-light', 'header-logo', 'cta="header-cta"'],
     'Hero.astro': [
       'grid-template-columns: minmax(0, 1fr) 270px 300px',
       'right: var(--page-edge)',
@@ -205,13 +206,12 @@ for (const f of astroFiles) {
     ],
     'QuoteForm.astro': [
       'id="cotacao"',
-      'lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]',
+      'lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]',
       'order-2 w-full lg:order-1',
-      'data-shortcode-slot',
       'cta="cotacao-whatsapp"',
     ],
     'Footer.astro': [
-      'border-t-2 border-accent-orange bg-primary-dark-900',
+      'navy-premium border-t border-white/15',
       'getFullYear()',
       '<address',
       'noopener noreferrer',
@@ -723,10 +723,9 @@ if (manifest) {
   const list = manifest.sections ?? []
 
   // Exceção desta LP (29/10/2026, docs/BRIEFING.md): o painel "identificar" saiu a pedido
-  // do cliente e a fase de apoio ficou vazia. Sem ela, a página tem um único bloco navy
-  // (diferenciais) — a metade branca fica sem o seu. Só a fase de apoio é dispensada.
+  // do cliente e a fase de apoio ficou vazia. Só a fase de apoio é dispensada; o bloco navy
+  // (verde) da primeira metade passou a ser a faixa dos segmentos (03/11/2026).
   const FASES_DISPENSADAS = new Set(['apoio'])
-  const semApoio = FASES_DISPENSADAS.has('apoio') && !list.some((s) => s.phase === 'apoio')
 
   /* B1. Ordem das fases ---------------------------------------------------- */
   {
@@ -764,32 +763,29 @@ if (manifest) {
     for (const [i, tone] of tones.entries())
       if (!TONES[tone]) fail(MANIFEST, `"${list[i].slug}": tom "${tone}" não existe`)
 
-    const switches = tones.filter((t, i) => i > 0 && t !== tones[i - 1]).length
-    if (switches !== 1)
-      fail(
-        MANIFEST,
-        `o fundo deve trocar exatamente uma vez (branco → cinza); trocou ${switches} vez(es): ` +
-          tones.join(' → '),
-      )
-    if (tones[0] !== 'light' || tones[tones.length - 1] !== 'gray')
-      fail(
-        MANIFEST,
-        'a sequência de fundos vai de branco (depois do hero navy) a cinza (antes da ' +
-          `cotação cinza); está ${tones[0]} → ${tones[tones.length - 1]}`,
-      )
-
-    const cut = tones.indexOf('gray')
-    for (const [label, run] of [
-      ['primeira metade (branca)', list.slice(0, cut)],
-      ['segunda metade (cinza)', list.slice(cut)],
-    ]) {
-      const carriers = run.filter((s) => s.carriesNavy).length
-      // Sem a fase de apoio, a metade branca não tem portador navy (ver exceção acima).
-      const esperado = semApoio && label.startsWith('primeira') ? 0 : 1
-      if (carriers !== esperado)
+    // Desvio pedido em 03/11/2026 (docs/BRIEFING.md), como na LP SEIVE LUB: os fundos alternam
+    // branco e cinza seção a seção, no lugar da troca única no meio. Continua valendo: começa branco (depois do hero), nunca três seções
+    // seguidas no mesmo fundo, e um bloco navy em cada metade da página.
+    if (tones[0] !== 'light')
+      fail(MANIFEST, `a primeira seção depois do hero navy é branca; está ${tones[0]}`)
+    for (let i = 2; i < tones.length; i++)
+      if (tones[i] === tones[i - 1] && tones[i] === tones[i - 2])
         fail(
           MANIFEST,
-          `a ${label} precisa de exatamente ${esperado} seção(ões) com bloco navy e tem ${carriers} — ` +
+          `três seções seguidas no mesmo fundo (${list[i - 2].slug}, ${list[i - 1].slug}, ` +
+            `${list[i].slug}) — os fundos alternam: ${tones.join(' → ')}`,
+        )
+
+    const half = Math.ceil(list.length / 2)
+    for (const [label, run] of [
+      ['primeira metade', list.slice(0, half)],
+      ['segunda metade', list.slice(half)],
+    ]) {
+      const carriers = run.filter((s) => s.carriesNavy).length
+      if (carriers !== 1)
+        fail(
+          MANIFEST,
+          `a ${label} precisa de exatamente 1 seção com bloco navy e tem ${carriers} — ` +
             'é o respiro escuro que sustenta o ritmo da página',
         )
     }

@@ -1,19 +1,22 @@
 ---
 /**
- * Linhas de produto — fase "oferta" da biblioteca B2, com o desvio visual aprovado para a
- * Safe Mine (mockup da seção do kit, 29/10/2026 — docs/BRIEFING.md).
+ * Linhas de produto — fase "oferta" da biblioteca B2. Nesta LP, os componentes do Kit de
+ * Incêndio SEIVE (sistema móvel).
  *
- * Cabeçalho com título à esquerda e texto à direita; três cards claros com chip, foto
- * grande e checks; o item escuro (`dark: true`) vira a faixa azul de largura total abaixo
- * dos cards, com o CTA visível. Cada card claro é inteiro clicável por um botão sem texto
- * que o cobre (rótulo acessível em `aria-label`), para manter o `data-cta` por item.
+ * Estética da LP SEIVE LUB (03/11/2026, pedido do usuário): cabeçalho em duas colunas
+ * (SplitHeader), cards brancos com borda fina e `card-shadow`, foto no topo sobre a placa
+ * clara (`surface-plate`) com o chip da função, título, descrição e os 3 checks. O item escuro
+ * (`dark: true`) vira a faixa verde SEIVE de largura total abaixo dos cards, com o CTA
+ * amarelo. Cada card claro é inteiro clicável por um botão sem texto que o cobre (rótulo
+ * acessível em `aria-label`), para manter o `data-cta` por item.
  *
  * Atenção: `npm run compose` sobrescreve este arquivo com o da biblioteca. Para recompor a
- * LP sem perder o mockup, restaure-o do git depois do compose.
+ * LP sem perder o layout, restaure-o do git depois do compose.
  */
 import Button from '@components/Button.astro'
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
+import SplitHeader from '@components/SplitHeader.astro'
 import Icon from '@components/Icon.astro'
 import BrandCarousel from '@components/BrandCarousel.astro'
 import type { SectionProps } from '@lib/layout'
@@ -28,39 +31,19 @@ const band = productLines.items.find((line) => line.dark)
 ---
 
 <Section id="linhas" tone={tone} rhythm={rhythm}>
-  {/* Cabeçalho: título à esquerda, texto à direita separado por uma linha */}
-  <div class="grid gap-6 lg:grid-cols-[auto_minmax(0,1fr)] lg:items-center lg:gap-14">
-    <div>
-      <p class="flex items-center gap-4 font-sans text-[12px] font-bold tracking-[0.24em] text-ink uppercase sm:text-[13px]">
-        <span aria-hidden="true" class="h-1 w-10 shrink-0 rounded-full bg-accent-orange"></span>
-        {productLines.eyebrow}
-      </p>
-      <h2 class="mt-4 font-display leading-[1.05] font-extrabold tracking-[-0.03em] text-primary-dark-900 text-[1.75rem] sm:text-[2.1rem] lg:text-[2.1rem] xl:text-[2.4rem]">
-        {productLines.title}
-      </h2>
-      <span aria-hidden="true" class="mt-4 block h-1 w-16 rounded-full bg-accent-orange"></span>
-    </div>
-
-    <p class="max-w-xl font-sans text-[17px] leading-relaxed text-ink-soft sm:text-[19px] lg:border-l lg:border-primary-dark/15 lg:py-3 lg:pl-14">
-      {productLines.text}
-    </p>
-  </div>
+  <SplitHeader
+    eyebrow={productLines.eyebrow}
+    title={productLines.title}
+    highlight={productLines.titleHighlight}
+    text={productLines.text}
+  />
 
   <BrandCarousel />
 
-  {/* Três cards claros */}
-  <ul class="mt-12 grid gap-6 md:grid-cols-3">
+  <ul class="mt-10 grid gap-5 md:grid-cols-3">
     {cards.map((line) => (
-      <li class="product-card group relative flex flex-col rounded-[1.75rem] bg-neutral-light p-6 shadow-[0_24px_48px_-32px_rgba(10,29,77,0.35)] ring-1 ring-primary-dark/[0.06] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_32px_60px_-30px_rgba(10,29,77,0.45)] sm:p-8">
-        <span class="self-start rounded-full bg-accent-orange/10 px-4 py-1.5 font-sans text-[11px] font-bold tracking-[0.16em] text-accent-orange uppercase sm:text-[12px]">
-          {line.tag}
-        </span>
-
-        <div class="relative mt-2 flex h-56 items-center justify-center sm:h-64">
-          <span
-            aria-hidden="true"
-            class="absolute bottom-1 left-1/2 h-5 w-40 -translate-x-1/2 rounded-[100%] bg-primary-dark/15 blur-md"
-          />
+      <li class="group relative flex flex-col overflow-hidden rounded-2xl border border-primary-dark/10 bg-neutral-light card-shadow transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:card-shadow-hover motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+        <div class="surface-plate relative aspect-[4/3] overflow-hidden">
           <Image
             src={line.photo.src}
             alt={line.photo.alt}
@@ -68,42 +51,47 @@ const band = productLines.items.find((line) => line.dark)
             width={640}
             loading="lazy"
             decoding="async"
-            class="relative z-[1] max-h-full w-auto max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            class="h-full w-full object-contain p-8 transition-transform duration-500 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />
+          <span class="absolute inset-x-0 top-0 flex items-center p-4">
+            <span class="rounded-full bg-neutral-light/95 px-3 py-1.5 font-sans text-[11px] font-bold tracking-[0.14em] text-accent-orange uppercase shadow-[0_6px_14px_-8px_rgb(0_0_0/0.5)]">
+              {line.tag}
+            </span>
+          </span>
         </div>
 
-        <h3 class="mt-6 font-display leading-tight font-extrabold tracking-[-0.01em] text-primary-dark-900 text-[1.3rem] sm:text-[1.6rem]">
-          {line.title}
-        </h3>
-        <p class="mt-2 font-sans text-[15px] leading-relaxed text-ink-soft sm:text-base">
-          {line.description}
-        </p>
+        <div class="flex flex-1 flex-col p-5 sm:p-6">
+          <h3 class="font-display text-[1.15rem] leading-tight font-extrabold text-primary-dark-900 sm:text-[1.25rem]">
+            {line.title}
+          </h3>
+          <p class="mt-2 font-sans text-[15px] leading-snug text-ink-soft">{line.description}</p>
 
-        <ul class="mt-5 flex flex-col gap-3">
-          {line.features.map((feature) => (
-            <li class="flex items-center gap-3 font-sans text-[15px] font-medium text-ink sm:text-base">
-              <span class="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-orange/10 text-accent-orange">
-                <Icon name="check" class="size-3.5" />
-              </span>
-              {feature}
-            </li>
-          ))}
-        </ul>
+          <ul class="mt-5 divide-y divide-primary-dark/[0.08] rounded-lg bg-neutral-gray-100 px-3.5">
+            {line.features.map((feature) => (
+              <li class="flex items-center gap-2.5 py-2.5 font-sans text-[14.5px] font-semibold text-ink">
+                <Icon name="check" class="size-4.5 shrink-0 text-accent-orange" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Card inteiro clicável: abre o atendimento com o rastreio do item */}
         <button
           type="button"
           data-cta={`linhas-${line.id}`}
           aria-label={`${cta.card}: ${line.title}`}
-          class="btn-slave-whats absolute inset-0 z-[3] cursor-pointer rounded-[1.75rem]"
+          class="btn-slave-whats absolute inset-0 z-[3] cursor-pointer rounded-2xl"
         />
       </li>
     ))}
   </ul>
 
-  {/* Faixa azul de peças e suporte (o item escuro) */}
+  {/* Faixa verde de peças e suporte (o item escuro) */}
   {band && (
-    <div class="linhas-band navy-premium relative mt-6 grid items-center gap-6 overflow-hidden rounded-[1.75rem] px-6 py-8 sm:px-10 lg:-mx-4 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)_auto] lg:gap-0 lg:px-8 lg:py-5">
+    <div class="navy-panel panel-shadow relative mt-6 grid items-center gap-6 overflow-hidden rounded-[1.5rem] px-6 py-8 sm:px-10 lg:grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto] lg:gap-0 lg:px-10 lg:py-7">
+      <span class="blueprint-grid pointer-events-none absolute inset-0" aria-hidden="true"></span>
+
       <Image
         src={band.photo.src}
         alt={band.photo.alt}
@@ -111,54 +99,33 @@ const band = productLines.items.find((line) => line.dark)
         width={640}
         loading="lazy"
         decoding="async"
-        class="mx-auto h-36 w-auto object-contain sm:h-44 lg:mx-0 lg:h-40"
+        class="relative mx-auto h-36 w-auto object-contain sm:h-40 lg:mx-0 lg:h-36"
       />
 
-      <div class="lg:border-l lg:border-white/15 lg:px-8">
-        <p class="flex items-center gap-4 font-sans text-[12px] font-bold tracking-[0.24em] text-neutral-light/85 uppercase">
-          <span aria-hidden="true" class="h-1 w-9 shrink-0 rounded-full bg-accent-orange" />
+      <div class="relative lg:border-l lg:border-white/15 lg:px-10">
+        <p class="flex items-center gap-4 font-sans text-[12px] font-semibold tracking-[0.18em] text-neutral-light/75 uppercase sm:text-[13px]">
+          <span aria-hidden="true" class="h-[3px] w-9 shrink-0 rounded-full bg-seive-yellow" />
           {band.tag}
         </p>
-        <h3 class="mt-3 font-display leading-tight font-extrabold text-neutral-light text-[1.3rem] sm:text-[1.6rem]">
+        <h3 class="mt-3 font-display text-[1.3rem] leading-tight font-extrabold text-neutral-light sm:text-[1.6rem]">
           {band.title}
         </h3>
-        <p class="mt-2 font-sans text-[16px] text-neutral-light/75 sm:text-[17px]">
-          {band.description}
-        </p>
-        <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2.5 xl:flex-nowrap">
+        <p class="mt-2 font-sans text-[16px] text-neutral-light/75">{band.description}</p>
+        <ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2.5">
           {band.features.map((feature) => (
-            <li class="flex items-center gap-2 font-sans text-[15px] whitespace-nowrap text-neutral-light/90 lg:text-[14px] xl:text-[15px]">
-              <span class="flex size-6 shrink-0 items-center justify-center rounded-full border border-accent-orange/70 text-accent-orange">
-                <Icon name="check" class="size-3.5" />
-              </span>
+            <li class="flex items-center gap-2 font-sans text-[15px] whitespace-nowrap text-neutral-light/90">
+              <Icon name="check" class="size-4.5 shrink-0 text-seive-yellow" />
               {feature}
             </li>
           ))}
         </ul>
       </div>
 
-      <div class="lg:border-l lg:border-white/15 lg:pl-10">
-        <Button cta={`linhas-${band.id}`} size="md" class="w-full sm:w-auto">
+      <div class="relative lg:border-l lg:border-white/15 lg:pl-10">
+        <Button cta={`linhas-${band.id}`} variant="yellow" size="md" class="w-full sm:w-auto">
           {cta.card}
         </Button>
       </div>
     </div>
   )}
 </Section>
-
-<style>
-  .product-card :focus-visible {
-    outline-offset: 4px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .product-card,
-    .product-card img,
-    .linhas-band button {
-      transition: none !important;
-    }
-    .product-card:hover {
-      transform: none;
-    }
-  }
-</style>

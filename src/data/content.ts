@@ -51,10 +51,13 @@ export const header = {
 
 export const hero = {
   eyebrow: 'Sistemas de supressão SEIVE',
-  /** H1 com a palavra-chave da campanha; o trecho `highlight` sai em verde. */
+  /** H1 com a palavra-chave da campanha. */
   title: 'Supressão de incêndio SEIVE para máquinas pesadas.',
+  /** Quebra de linha do H1 no desktop largo; a outra vem antes do destaque: três linhas. */
+  titleBreakAfter: 'Supressão de incêndio',
+  /** Trecho do H1 em amarelo (amarelo da folha SEIVE). */
   highlight: 'máquinas pesadas.',
-  text: 'Sistemas móveis, embarcados na máquina, e fixos, para instalações críticas. A Safe Mine ajuda a dimensionar a solução para a sua aplicação.',
+  text: 'Sistemas móveis, embarcados na máquina, e fixos, para instalações críticas.\nA Safe Mine ajuda a dimensionar a solução para a sua aplicação.',
   banner: {
     src: heroBg,
     alt: 'Escavadeira com reservatório supressor SEIVE instalado, em operação numa mina',
@@ -73,6 +76,7 @@ export const hero = {
 } as const satisfies {
   eyebrow: string
   title: string
+  titleBreakAfter: string
   highlight: string
   text: string
   banner: Photo & { widths: readonly number[]; sizes: string }
@@ -85,23 +89,23 @@ export const hero = {
 export const quote = {
   eyebrow: 'Solicite sua cotação',
   title: 'Fale com quem entende de supressão de incêndio.',
-  /** Trecho do título que sai em verde, numa segunda linha (mockup da cotação). */
-  highlight: 'supressão de incêndio.',
+  /** Trecho do título em verde, na segunda linha. */
+  titleHighlight: 'supressão de incêndio.',
   text: 'Solicite uma avaliação comercial para proteção contra incêndio em sua operação. Preencha o formulário ou fale direto conosco pelo WhatsApp.',
+  /** Linha sob o botão de WhatsApp. */
+  help: 'Atendemos pelo formulário ou pelo WhatsApp, como preferir.',
   trust: [
-    { icon: 'zap', label: 'Detecção e atuação automáticas' },
-    { icon: 'power', label: 'Acionamento manual disponível' },
+    { icon: 'zap', label: 'Atuação automática' },
+    { icon: 'power', label: 'Acionamento manual' },
     { icon: 'shield', label: 'Garantia de 12 meses' },
   ],
-  /** Nota de LGPD exibida abaixo do formulário. */
-  lgpd: 'Seus dados serão usados apenas para responder à sua solicitação de cotação, conforme a LGPD.',
 } as const satisfies {
   eyebrow: string
   title: string
-  highlight: string
+  titleHighlight: string
   text: string
+  help: string
   trust: readonly [TrustItem, TrustItem, TrustItem]
-  lgpd: string
 }
 
 /* ------------------------------------------------------------------ footer */

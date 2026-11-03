@@ -30,13 +30,14 @@
       "dataExport": "systems",
       "carriesNavy": false,
       "tone": "light",
-      "rhythm": "open",
+      "rhythm": "uniform",
       "tones": [
         "light"
       ],
       "rhythms": [
         "open",
-        "even"
+        "even",
+        "uniform"
       ],
       "ctas": [
         "sistemas-{item.id}"
@@ -95,8 +96,8 @@
       "data": "linhas.ts",
       "dataExport": "productLines",
       "carriesNavy": false,
-      "tone": "light",
-      "rhythm": "open",
+      "tone": "gray",
+      "rhythm": "uniform",
       "tones": [
         "light",
         "gray"
@@ -105,7 +106,8 @@
         "open",
         "tight",
         "even",
-        "flow"
+        "flow",
+        "uniform"
       ],
       "exampleHash": "8d2664e3a490fc3d",
       "ctas": [
@@ -164,9 +166,9 @@
       "component": "SegmentsShowcase.astro",
       "data": "segmentos.ts",
       "dataExport": "segments",
-      "carriesNavy": false,
+      "carriesNavy": true,
       "tone": "gray",
-      "rhythm": "even",
+      "rhythm": "uniform",
       "tones": [
         "light",
         "gray"
@@ -174,37 +176,35 @@
       "rhythms": [
         "centered-lead",
         "even",
-        "flow"
+        "flow",
+        "uniform"
       ],
       "ctas": [
-        "segmentos-{item.id}"
+        "segmentos-{item.id}",
+        "segmentos-outras"
       ],
       "contract": {
         "itemsPath": "items",
-        "itemsMin": 8,
+        "itemsMin": 6,
         "itemsMax": 8,
         "requiredItemFields": [
           "id",
           "icon",
           "label",
-          "description",
-          "bullets"
+          "description"
         ],
-        "itemArrays": {
-          "bullets": 3
-        },
         "maxLength": {
           "text": 170,
-          "item.description": 160
+          "item.description": 75
         }
       },
       "assets": [
         {
           "dir": "segmentos",
           "files": "até 8 fotos (opcionais)",
-          "spec": "JPG/PNG 1200×900 (4:3), setor em operação",
-          "width": 1200,
-          "height": 900,
+          "spec": "JPG/PNG 4:3, setor em operação; o card mostra até 640px",
+          "width": 640,
+          "height": 480,
           "alpha": false
         }
       ]
@@ -223,12 +223,13 @@
       "component": "Faq.astro",
       "data": "perguntas.ts",
       "dataExport": "faq",
-      "tone": "gray",
-      "rhythm": "even",
+      "tone": "light",
+      "rhythm": "uniform",
       "rhythms": [
         "even",
         "tight",
-        "flow"
+        "flow",
+        "uniform"
       ],
       "ctas": [
         "perguntas-cta"
@@ -259,13 +260,14 @@
       "dataExport": "why",
       "carriesNavy": true,
       "tone": "gray",
-      "rhythm": "overlap",
+      "rhythm": "uniform",
       "tones": [
         "light",
         "gray"
       ],
       "rhythms": [
-        "overlap"
+        "overlap",
+        "uniform"
       ],
       "exampleHash": "24683935274bbad0",
       "ctas": [
@@ -294,18 +296,9 @@
           "width": 1600,
           "height": 900,
           "alpha": false
-        },
-        {
-          "dir": "diferenciais",
-          "match": "pessoa",
-          "files": "pessoa.png",
-          "spec": "Pessoa recortada de corpo inteiro, 1220×1000, fundo transparente",
-          "width": 1220,
-          "height": 1000,
-          "alpha": true
         }
       ]
     }
   ],
-  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md). 03/11/2026: sistemas (móvel e fixo), seção própria desta LP, entrou na oferta antes de linhas"
+  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md). 03/11/2026: sistemas (móvel e fixo), seção própria desta LP, entrou na oferta antes de linhas. 03/11/2026: estética da LP SEIVE LUB (paleta SEIVE, respiro uniform, fundos alternados, segmentos como faixa verde e portador navy da 1ª metade)"
 }

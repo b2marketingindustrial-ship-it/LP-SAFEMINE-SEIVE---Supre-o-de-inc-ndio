@@ -29,8 +29,10 @@ export interface ProductLine {
 }
 
 export const productLines = {
-  eyebrow: 'Sistema móvel · Kit de Incêndio SEIVE',
+  eyebrow: 'Kit de Incêndio SEIVE',
   title: 'O que compõe o sistema móvel',
+  /** Trecho do título em verde. */
+  titleHighlight: 'sistema móvel',
   /** Versão curta do texto de prevenção da apresentação SEIVE (p. 13), aprovada em 02/11/2026. */
   text: 'Máquinas em altas temperaturas exigem atenção: um pequeno foco pode sair de controle. O SEIVE age sozinho, da detecção à atuação.',
   items: [
@@ -74,6 +76,7 @@ export const productLines = {
 } as const satisfies {
   eyebrow: string
   title: string
+  titleHighlight: string
   text: string
   items:
     | readonly [ProductLine, ProductLine, ProductLine]

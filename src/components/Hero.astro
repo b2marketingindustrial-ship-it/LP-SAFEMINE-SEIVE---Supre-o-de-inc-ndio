@@ -4,8 +4,9 @@
  * A coluna 2 é a janela do banner; nunca coloque conteúdo nela.
  * Abra a página com `?grid=1` para ver as colunas.
  *
- * Banner (src/assets/heroBg.png, 1981×900): escavadeira em operação numa mina, banner entregue em 29/10/2026
- * (1870×841), enquadrado para o grid (assunto em ~70% da largura, lado esquerdo azul). Brief em 4.1.3.
+ * Banner (src/assets/heroBg.png, 1981×900): escavadeira em operação numa mina (29/10/2026), enquadrada
+ * no grid (assunto em ~70% da largura). Véus, luzes e destaque amarelo da LP SEIVE LUB (03/11/2026).
+ * Brief em 4.1.3.
  */
 import { Picture } from 'astro:assets'
 import Icon from './Icon.astro'
@@ -19,10 +20,19 @@ const isDev = import.meta.env.DEV
 const at = hero.title.indexOf(hero.highlight)
 const titleBefore = at >= 0 ? hero.title.slice(0, at) : hero.title
 const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
+
+// Título em três linhas no desktop largo (03/11/2026): quebra depois de `hero.titleBreakAfter` e antes
+// do destaque; abaixo de xl a coluna é estreita e o texto corre.
+const breakAt = hero.title.startsWith(hero.titleBreakAfter) ? hero.titleBreakAfter.length : 0
+const titleHead = breakAt ? titleBefore.slice(0, breakAt) : ''
+const titleRest = breakAt ? titleBefore.slice(breakAt).trimStart() : titleBefore
+
+// Parágrafo com quebra opcional ("\n" em `hero.text`): só a partir de sm, para não deixar linha curta no celular.
+const textLines = hero.text.split('\n')
 ---
 
 <section
-  class="relative overflow-hidden rounded-b-[2rem] bg-primary-dark-900 sm:rounded-b-[3rem]"
+  class="relative overflow-hidden rounded-b-[2rem] bg-[#064229] sm:rounded-b-[3rem]"
   data-hero
 >
   <div class="hero-photo absolute inset-0 z-[1]">
@@ -68,18 +78,28 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       <div class="max-w-xl lg:max-w-none">
         <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
 
-        <h1 class="mt-2 font-display leading-[1.1] font-extrabold text-neutral-light text-[2.25rem] sm:text-[2.5rem] lg:text-[2.4rem] xl:text-[2.75rem]">
-          {titleBefore}
-          <span class="text-accent-orange-light">{at >= 0 ? hero.highlight : ''}</span>
+        <h1 class="mt-2 font-display leading-[1.1] font-extrabold text-neutral-light text-[2.15rem] sm:text-[2.6rem] lg:text-[2.1rem] xl:text-[2.85rem] 2xl:text-[3.1rem]">
+          {titleHead}
+          {breakAt > 0 && <br class="hidden xl:block" />}
+          {breakAt > 0 && ' '}
+          {titleRest}
+          {at >= 0 && <br class="hidden xl:block" />}
+          <span class="text-seive-yellow">{at >= 0 ? hero.highlight : ''}</span>
           {titleAfter}
         </h1>
 
         <p class="mt-5 font-sans text-lg leading-relaxed text-neutral-light/75 lg:text-base">
-          {hero.text}
+          {textLines.map((line, i) => (
+            <>
+              {i > 0 && <br class="hidden sm:block" />}
+              {i > 0 && ' '}
+              {line}
+            </>
+          ))}
         </p>
 
         {/* Caixa de ícones — inline, texto sempre em duas linhas */}
-        <ul class="hero-points relative z-[3] mt-7 inline-flex max-w-full flex-wrap gap-x-5 gap-y-3 rounded-xl border border-white/10 bg-primary-dark-900/55 px-3.5 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] backdrop-blur-md sm:gap-x-6 sm:px-4 lg:w-max lg:max-w-none lg:flex-nowrap lg:gap-x-6">
+        <ul class="hero-points relative z-[3] mt-7 inline-flex max-w-full flex-wrap gap-x-5 gap-y-3 rounded-xl border border-white/10 bg-seive-950/55 px-3.5 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] backdrop-blur-md sm:gap-x-6 sm:px-4 lg:w-max lg:max-w-none lg:flex-nowrap lg:gap-x-6">
           {hero.points.map((point) => (
             <li class="hero-point flex items-center gap-2.5">
               <span class="icon-badge flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/25 bg-white/10 backdrop-blur-sm">
@@ -120,7 +140,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
         <slot name="shortcode">
           {isDev ? (
             <div
-              class="flex min-h-[430px] w-full flex-col gap-3 border border-dashed border-neutral-light/35 bg-primary-dark-900/80 p-6 text-left backdrop-blur-sm"
+              class="flex min-h-[430px] w-full flex-col gap-3 border border-dashed border-neutral-light/35 bg-seive-950/80 p-6 text-left backdrop-blur-sm"
               aria-label="Mock do chat (só em desenvolvimento)"
             >
               <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
@@ -132,7 +152,7 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
               <div class="mt-auto h-12 rounded-full bg-accent-orange" />
             </div>
           ) : (
-            <div class="flex min-h-[430px] w-full flex-col items-center justify-center gap-3 border border-dashed border-neutral-light/35 bg-primary-dark-900/80 p-6 text-center backdrop-blur-sm">
+            <div class="flex min-h-[430px] w-full flex-col items-center justify-center gap-3 border border-dashed border-neutral-light/35 bg-seive-950/80 p-6 text-center backdrop-blur-sm">
               <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
                 Espaço reservado
               </span>
@@ -198,15 +218,50 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
     --page-edge: max(0px, calc(50% - var(--page-half)));
   }
 
+  /* Grão leve sobre foto e véus (abaixo do conteúdo): tira o aspecto chapado dos degradês. */
+  [data-hero]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Véus nas cores da logo SEIVE (03/11/2026): base em degradê de verdes, spot do verde da
+     marca atrás do título com núcleo mais claro, luz amarela quente no pé, sombras na borda
+     e embaixo, e um feixe de luz diagonal. A transição para a foto é feita por máscara, para
+     as luzes não criarem emenda. */
+  .hero-navy,
+  .hero-navy-right {
+    --hero-base: linear-gradient(160deg, #0b5a37 0%, #064229 48%, #032b1b 100%);
+  }
+
   .hero-navy {
     background:
-      radial-gradient(1100px 520px at 12% -8%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
-      linear-gradient(
-        to right,
-        var(--color-primary-dark) 0%,
-        var(--color-primary-dark-800) 55%,
-        transparent 96%
-      );
+      radial-gradient(60% 55% at 22% 20%, rgb(0 168 90 / 0.42) 0%, transparent 70%),
+      radial-gradient(32% 28% at 30% 24%, rgb(60 196 124 / 0.16) 0%, transparent 70%),
+      radial-gradient(52% 46% at 6% 104%, rgb(255 210 58 / 0.3) 0%, transparent 70%),
+      radial-gradient(70% 60% at 50% 118%, rgb(0 0 0 / 0.38) 0%, transparent 70%),
+      radial-gradient(38% 70% at -6% 50%, rgb(0 0 0 / 0.3) 0%, transparent 70%),
+      linear-gradient(115deg, transparent 34%, rgb(255 255 255 / 0.05) 42%, transparent 52%),
+      var(--hero-base);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 42%,
+      rgb(0 0 0 / 0.72) 64%,
+      rgb(0 0 0 / 0.3) 82%,
+      transparent 98%
+    );
+    mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 42%,
+      rgb(0 0 0 / 0.72) 64%,
+      rgb(0 0 0 / 0.3) 82%,
+      transparent 98%
+    );
   }
 
   @media (min-width: 1024px) {
@@ -222,28 +277,57 @@ const titleAfter = at >= 0 ? hero.title.slice(at + hero.highlight.length) : ''
       width: 1700px;
     }
 
-    /* Navy sólido sob a coluna 1, dissolvendo antes do assunto. */
+    /* Sob a coluna 1, dissolvendo em curva longa antes do assunto. */
     .hero-navy {
       width: calc(50% - 20px);
-      background:
-        radial-gradient(900px 520px at 10% -10%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
-        linear-gradient(
-          to left,
-          transparent 0px,
-          rgb(10 29 77 / 0.45) 70px,
-          var(--color-primary-dark-800) 150px,
-          var(--color-primary-dark) 100%
-        );
+      -webkit-mask-image: linear-gradient(
+        to left,
+        transparent 0px,
+        rgb(0 0 0 / 0.06) 50px,
+        rgb(0 0 0 / 0.2) 110px,
+        rgb(0 0 0 / 0.4) 180px,
+        rgb(0 0 0 / 0.62) 260px,
+        rgb(0 0 0 / 0.82) 350px,
+        #000 460px
+      );
+      mask-image: linear-gradient(
+        to left,
+        transparent 0px,
+        rgb(0 0 0 / 0.06) 50px,
+        rgb(0 0 0 / 0.2) 110px,
+        rgb(0 0 0 / 0.4) 180px,
+        rgb(0 0 0 / 0.62) 260px,
+        rgb(0 0 0 / 0.82) 350px,
+        #000 460px
+      );
     }
 
-    /* Navy da direita: cobre a coluna do shortcode e fecha a margem da página. */
+    /* À direita: cobre a coluna do shortcode e fecha a margem da página. */
+    /* Brilho verde no alto e sombra na base. */
     .hero-navy-right {
       width: calc(50% - 261px);
-      background: linear-gradient(
+      background:
+        radial-gradient(70% 50% at 85% 0%, rgb(0 168 90 / 0.3) 0%, transparent 70%),
+        radial-gradient(60% 45% at 70% 108%, rgb(255 210 58 / 0.1) 0%, transparent 70%),
+        radial-gradient(80% 60% at 60% 120%, rgb(0 0 0 / 0.35) 0%, transparent 70%),
+        var(--hero-base);
+      -webkit-mask-image: linear-gradient(
         to right,
         transparent 0px,
-        rgb(10 29 77 / 0.55) 200px,
-        var(--color-primary-dark-900) 364px
+        rgb(0 0 0 / 0.12) 70px,
+        rgb(0 0 0 / 0.34) 150px,
+        rgb(0 0 0 / 0.6) 230px,
+        rgb(0 0 0 / 0.82) 300px,
+        #000 380px
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0px,
+        rgb(0 0 0 / 0.12) 70px,
+        rgb(0 0 0 / 0.34) 150px,
+        rgb(0 0 0 / 0.6) 230px,
+        rgb(0 0 0 / 0.82) 300px,
+        #000 380px
       );
     }
 
