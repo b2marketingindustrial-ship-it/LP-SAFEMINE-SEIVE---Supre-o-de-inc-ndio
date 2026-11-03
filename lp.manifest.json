@@ -12,7 +12,8 @@
     ],
     "apoio": [],
     "prova": [
-      "segmentos"
+      "segmentos",
+      "clientes"
     ],
     "autoridade": [
       "perguntas",
@@ -215,6 +216,49 @@
         "light",
         "gray"
       ],
+      "assets": [
+        {
+          "dir": "clientes",
+          "files": "4 a 20 logos",
+          "spec": "Logos com fundo transparente; aqui recortados do catálogo em baixa resolução"
+        }
+      ],
+      "slug": "clientes",
+      "id": "clientes",
+      "title": "Clientes e números",
+      "phase": "prova",
+      "component": "ClientLogos.astro",
+      "data": "clientes.ts",
+      "dataExport": "clients",
+      "tone": "light",
+      "rhythm": "uniform",
+      "rhythms": [
+        "even",
+        "tight",
+        "centered-lead",
+        "flow",
+        "uniform"
+      ],
+      "ctas": [],
+      "contract": {
+        "itemsPath": "logos",
+        "itemsMin": 4,
+        "itemsMax": 20,
+        "requiredItemFields": [
+          "src",
+          "alt"
+        ],
+        "maxLength": {
+          "text": 170
+        }
+      }
+    },
+    {
+      "carriesNavy": false,
+      "tones": [
+        "light",
+        "gray"
+      ],
       "assets": [],
       "slug": "perguntas",
       "id": "perguntas",
@@ -300,5 +344,5 @@
       ]
     }
   ],
-  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md). 03/11/2026: sistemas (móvel e fixo), seção própria desta LP, entrou na oferta antes de linhas. 03/11/2026: estética da LP SEIVE LUB (paleta SEIVE, respiro uniform, fundos alternados, segmentos como faixa verde e portador navy da 1ª metade)"
+  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md). 03/11/2026: sistemas (móvel e fixo), seção própria desta LP, entrou na oferta antes de linhas. 03/11/2026: estética da LP SEIVE LUB (paleta SEIVE, respiro uniform, fundos alternados, segmentos como faixa verde e portador navy da 1ª metade). 03/11/2026: clientes (logos SEIVE, componente da LP SEIVE LUB) depois de segmentos"
 }

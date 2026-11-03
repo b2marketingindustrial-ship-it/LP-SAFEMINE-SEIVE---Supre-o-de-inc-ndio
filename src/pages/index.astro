@@ -15,6 +15,7 @@
  * "segmentos" (ritmo `even`) e "perguntas" entrou na fase de autoridade. Em 03/11/2026,
  * "sistemas" (seção própria desta LP, móvel e fixo) entrou na oferta, antes de "linhas", e a LP
  * passou à estética da LP SEIVE LUB: respiro único (`uniform`) e fundos alternados seção a seção.
+ * "clientes" (componente da LP SEIVE LUB) entrou depois de "segmentos".
  * O compositor recusa essa composição, por isso este arquivo e `lp.manifest.json`
  * foram ajustados à mão — não rode `npm run compose` sem reaplicar a exceção.
  */
@@ -26,6 +27,7 @@ import Footer from '../components/Footer.astro'
 import SystemsSplit from '../components/sections/SystemsSplit.astro'
 import ProductLines from '../components/sections/ProductLines.astro'
 import SegmentsShowcase from '../components/sections/SegmentsShowcase.astro'
+import ClientLogos from '../components/sections/ClientLogos.astro'
 import Faq from '../components/sections/Faq.astro'
 import WhyBrand from '../components/sections/WhyBrand.astro'
 import { shortcodes } from '../data/site'
@@ -41,6 +43,7 @@ import { shortcodes } from '../data/site'
     <SystemsSplit tone="light" rhythm="uniform" />
     <ProductLines tone="gray" rhythm="uniform" />
     <SegmentsShowcase tone="gray" rhythm="uniform" />
+    <ClientLogos tone="light" rhythm="uniform" />
     <Faq tone="light" rhythm="uniform" />
     <WhyBrand tone="gray" rhythm="uniform" />
     <QuoteForm>
