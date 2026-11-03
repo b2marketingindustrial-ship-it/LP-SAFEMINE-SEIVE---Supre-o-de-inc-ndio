@@ -12,7 +12,8 @@
  *
  * Exceção desta LP (29/10/2026, docs/BRIEFING.md): o painel "identificar" (fase de
  * apoio) foi removido a pedido do cliente. Em 02/11/2026, "aplicacoes" deu lugar a
- * "segmentos" (ritmo `even`) e "perguntas" entrou na fase de autoridade.
+ * "segmentos" (ritmo `even`) e "perguntas" entrou na fase de autoridade. Em 03/11/2026,
+ * "sistemas" (seção própria desta LP, móvel e fixo) entrou na oferta, antes de "linhas".
  * O compositor recusa essa composição, por isso este arquivo e `lp.manifest.json`
  * foram ajustados à mão — não rode `npm run compose` sem reaplicar a exceção.
  */
@@ -21,6 +22,7 @@ import Header from '../components/Header.astro'
 import Hero from '../components/Hero.astro'
 import QuoteForm from '../components/QuoteForm.astro'
 import Footer from '../components/Footer.astro'
+import SystemsSplit from '../components/sections/SystemsSplit.astro'
 import ProductLines from '../components/sections/ProductLines.astro'
 import SegmentsShowcase from '../components/sections/SegmentsShowcase.astro'
 import Faq from '../components/sections/Faq.astro'
@@ -35,6 +37,7 @@ import { shortcodes } from '../data/site'
     <Hero>
       <Fragment slot="shortcode">{shortcodes.chat}</Fragment>
     </Hero>
+    <SystemsSplit tone="light" rhythm="open" />
     <ProductLines tone="light" rhythm="open" />
     <SegmentsShowcase tone="gray" rhythm="even" />
     <Faq tone="gray" rhythm="even" />

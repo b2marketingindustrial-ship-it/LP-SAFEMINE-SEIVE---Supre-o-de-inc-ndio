@@ -7,6 +7,7 @@
   ],
   "phases": {
     "oferta": [
+      "sistemas",
       "linhas"
     ],
     "apoio": [],
@@ -19,6 +20,72 @@
     ]
   },
   "sections": [
+    {
+      "slug": "sistemas",
+      "id": "sistemas",
+      "title": "Sistemas móvel e fixo",
+      "phase": "oferta",
+      "component": "SystemsSplit.astro",
+      "data": "sistemas.ts",
+      "dataExport": "systems",
+      "carriesNavy": false,
+      "tone": "light",
+      "rhythm": "open",
+      "tones": [
+        "light"
+      ],
+      "rhythms": [
+        "open",
+        "even"
+      ],
+      "ctas": [
+        "sistemas-{item.id}"
+      ],
+      "contract": {
+        "itemsPath": "items",
+        "itemsMin": 2,
+        "itemsMax": 2,
+        "requiredItemFields": [
+          "id",
+          "icon",
+          "tag",
+          "title",
+          "description",
+          "photo",
+          "detail",
+          "features",
+          "applications"
+        ],
+        "itemArrays": {
+          "features": 3,
+          "applications": 6
+        },
+        "maxLength": {
+          "text": 170,
+          "item.description": 120
+        }
+      },
+      "assets": [
+        {
+          "dir": "sistemas",
+          "match": "movel.",
+          "files": "movel.jpg",
+          "spec": "Foto 1280×1040, máquina com o sistema instalado",
+          "width": 1280,
+          "height": 1040,
+          "alpha": false
+        },
+        {
+          "dir": "sistemas",
+          "match": "fixo.",
+          "files": "fixo.jpg",
+          "spec": "Foto 1280×1040, instalação fixa",
+          "width": 1280,
+          "height": 1040,
+          "alpha": false
+        }
+      ]
+    },
     {
       "slug": "linhas",
       "id": "linhas",
@@ -240,5 +307,5 @@
       ]
     }
   ],
-  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md)"
+  "excecao": "29/10/2026: identificar removido a pedido do cliente. 02/11/2026: aplicacoes trocada por segmentos (com faixa de números sem logos) e perguntas acrescentada (docs/BRIEFING.md). 03/11/2026: sistemas (móvel e fixo), seção própria desta LP, entrou na oferta antes de linhas"
 }

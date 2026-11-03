@@ -54,7 +54,7 @@ export const hero = {
   /** H1 com a palavra-chave da campanha; o trecho `highlight` sai em verde. */
   title: 'Supressão de incêndio SEIVE para máquinas pesadas.',
   highlight: 'máquinas pesadas.',
-  text: 'Proteção automatizada para equipamentos móveis e operações de mineração. A Safe Mine ajuda a dimensionar a solução para a sua aplicação.',
+  text: 'Sistemas móveis, embarcados na máquina, e fixos, para instalações críticas. A Safe Mine ajuda a dimensionar a solução para a sua aplicação.',
   banner: {
     src: heroBg,
     alt: 'Escavadeira com reservatório supressor SEIVE instalado, em operação numa mina',
@@ -66,10 +66,10 @@ export const hero = {
   points: [
     { icon: 'gear', line1: 'Detecção e atuação', line2: 'automática' },
     { icon: 'excavator', line1: 'Equipamentos móveis', line2: 'e máquinas pesadas' },
-    { icon: 'mountain', line1: 'Mineração', line2: 'e indústria' },
+    { icon: 'building', line1: 'Sistemas fixos para', line2: 'instalações críticas' },
   ],
   /** Aviso sob os botões. */
-  note: 'Conte qual equipamento você precisa proteger.',
+  note: 'Conte qual equipamento ou ambiente você precisa proteger.',
 } as const satisfies {
   eyebrow: string
   title: string

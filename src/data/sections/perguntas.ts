@@ -2,7 +2,8 @@
  * Dados da seção "Perguntas frequentes" (biblioteca B2, fase: autoridade).
  *
  * As 4 primeiras vêm da ficha (`perguntas`); certificação e manutenção entraram em
- * 02/11/2026, com base na Apresentação SEIVE Supressor 2026 (p. 2, 3 e 14).
+ * 02/11/2026, com base na Apresentação SEIVE Supressor 2026 (p. 2, 3 e 14). A diferença
+ * entre móvel e fixo entrou em 03/11/2026, com o texto do site da Safe Mine.
  */
 export interface Question {
   question: string
@@ -20,6 +21,11 @@ export const faq = {
       question: 'O sistema depende do operador para funcionar?',
       answer:
         'Não. Da detecção à atuação, o processo é automático. O sistema também tem 2 modos manuais, por botoeiras posicionadas à vista.',
+    },
+    {
+      question: 'Qual é a diferença entre o sistema móvel e o fixo?',
+      answer:
+        'O móvel é instalado na própria máquina, como escavadeiras, caminhões e colheitadeiras, e a acompanha na operação. O fixo protege ambientes, como salas elétricas, usinas e alojamentos, com monitoramento permanente, detecção e alarme.',
     },
     {
       question: 'O sistema SEIVE é certificado?',

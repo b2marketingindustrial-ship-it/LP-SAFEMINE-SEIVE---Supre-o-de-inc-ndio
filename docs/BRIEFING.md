@@ -131,7 +131,7 @@ Direito de uso das fotos de máquinas da apresentação da SEIVE a confirmar.
 | SEIVE como marca no núcleo do briefing                 | a LP é do anunciante                                     | Safe Mine na marca, rodapé e WhatsApp; SEIVE como fabricante                       |
 | Certificação ABNT, NFPA, UL, ISO 9001 e patente        | o briefing pede confirmar certificados antes de publicar | liberada em 02/11/2026 com os selos enviados: faixa de selos nos diferenciais      |
 | Área "Brasil e América do Sul"                         | o briefing pede confirmar a cobertura                    | nenhuma área declarada                                                             |
-| Linha "Sistema fixo de alarme e detecção" da Safe Mine | o que a campanha negativa não é assunto da página        | oferta só no Kit de Incêndio SEIVE                                                 |
+| Linha "Sistema fixo de alarme e detecção" da Safe Mine | o que a campanha negativa não é assunto da página        | fora até 03/11/2026; agora entra na seção `sistemas`, a pedido do usuário          |
 | Logos de clientes da SEIVE                             | clientes têm de ser do anunciante, com autorização       | bloco de clientes fora                                                             |
 | Números da SEIVE sem logos                             | "clientes" exige 4–8 logos junto com os números          | faixa de 3 números sob os segmentos, com a fonte (02/11/2026)                      |
 | Verde da Safe Mine nos botões                          | botão com texto branco exige 4,5:1                       | verde escurecido (#4d7f22)                                                         |
@@ -238,3 +238,15 @@ Revisão da LP contra a Apresentação SEIVE Supressor 2026 e o texto do cliente
 - **Diferenciais:** "sem depender do operador", "2 modos manuais por botoeiras à vista" e o parágrafo com a fabricação nacional (100% brasileira, Contagem/MG, peças e preços em reais, estoque imediato).
 - **Segmentos no lugar de aplicações:** 8 abas com o texto que a ficha já trazia em `segmentos`; as 4 fotos das aplicações foram para mineração, construção, florestal e agronegócio, e as outras 4 abas usam o painel navy com ícone até chegarem fotos. Abaixo, a faixa com +6.000 sistemas, +5.000 equipamentos salvos e +20 anos (fonte: apresentação, p. 6–7, até o 4º tri/2025).
 - **Perguntas frequentes:** as 4 da ficha mais certificação e manutenção, antes dos diferenciais (o ritmo `overlap` dos diferenciais só funciona imediatamente antes da cotação). `SplitHeader.astro` e `Faq.astro` vieram da LP SEIVE LUB, e o `check:lp` passou a aceitar `<SplitHeader>` como cabeçalho, como lá.
+
+## Sistemas móvel e fixo (03/11/2026)
+
+A pedido do usuário: a supressão de incêndio da Safe Mine tem dois segmentos, **móvel** e **fixo**, e a página tem de tratar os dois. Fontes: as páginas de produto do site da Safe Mine, `/produtos/sistema-de-supressao-de-incendio/8` (móvel) e `/produtos/sistema-fixo-de-alarme-e-deteccao/17` (fixo), lidas em 03/11/2026.
+
+- **Seção nova `sistemas`** (`SystemsSplit.astro`, `src/data/sections/sistemas.ts`), própria desta LP e fora da biblioteca, na fase de oferta antes de `linhas`, fundo branco, ritmo `open`. São dois cards com foto, um componente em destaque, 3 checks, 6 aplicações e o CTA `sistemas-movel` / `sistemas-fixo`. As fotos vêm das galerias das duas páginas do site da Safe Mine (`src/assets/sistemas/`, 1280×1040).
+- **Kit:** passou a ser o kit do sistema móvel (eyebrow "Sistema móvel · Kit de Incêndio SEIVE", título "O que compõe o sistema móvel").
+- **Hero:** o texto cita os dois sistemas, o 3º ponto virou "Sistemas fixos para instalações críticas" (antes: "Mineração e indústria") e a nota diz "equipamento ou ambiente". O H1 segue com a palavra-chave da campanha.
+- **Perguntas:** entrou "Qual é a diferença entre o sistema móvel e o fixo?" como 2ª pergunta.
+- **A confirmar com o cliente:** o site chama o fixo de "Sistema Fixo de Alarme e Detecção" e, no mesmo produto, de "sistemas automáticos de supressão de incêndio para espaços operacionais e habitacionais"; as fotos mostram baterias de cilindros SEIVE. A LP diz "Alarme, detecção e supressão no ambiente".
+- **A revisar na campanha:** as negativas de oferta `central de alarme` e `detecção para data center` excluem justamente o público do sistema fixo. A página não usa esses termos literais, mas a campanha precisa ser revista se o fixo também for anunciado.
+- `npm run ficha -- --check` não roda neste servidor (a biblioteca do starter não está ao lado da LP); `check:lp`, lint, prettier, `astro check` e build passam.
